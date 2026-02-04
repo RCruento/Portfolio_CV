@@ -16,22 +16,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rayankoussa.fr"),
-  title: "Rayan Koussa – Portfolio développeur web",
+  metadataBase: new URL("https://rayankoussa.vercel.app"),
+  title: "Rayan Koussa – Développeur Full-Stack Junior | Portfolio",
   description:
-    "Portfolio de Rayan Koussa, développeur full-stack Next.js, TypeScript, Tailwind CSS, animations, dark mode, projets, contact.",
+    "Portfolio de Rayan Koussa, développeur full-stack junior. Compétences en React, Next.js, TypeScript, Node.js, PHP, MySQL. Backend et frontend.",
+  keywords: ["développeur web", "full-stack", "junior", "React", "TypeScript", "Node.js", "PHP", "MySQL", "portfolio"],
+  authors: [{ name: "Rayan Koussa", url: "https://rayankoussa.vercel.app" }],
+  creator: "Rayan Koussa",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://rayankoussa.vercel.app",
+  },
   openGraph: {
-    title: "Rayan Koussa – Portfolio développeur web",
+    title: "Rayan Koussa – Développeur Full-Stack Junior",
     description:
-      "Portfolio  de Rayan Koussa, développeur full-stack Next.js, TypeScript, Tailwind CSS, animations, dark mode, projets, contact.",
-    url: "https://rayankoussa.fr",
+      "Développeur full-stack junior polyvalent. Compétences en React, Next.js, Node.js, PHP, MySQL et plus. Découvrez mes projets.",
+    url: "https://rayankoussa.vercel.app",
     siteName: "Portfolio Rayan Koussa",
     images: [
       {
         url: "/RK.jpg",
         width: 800,
         height: 600,
-        alt: "Rayan Koussa – Portfolio",
+        alt: "Rayan Koussa – Développeur Full-Stack",
+        type: "image/jpeg",
       },
     ],
     locale: "fr_FR",
@@ -39,11 +57,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rayan Koussa – Portfolio développeur web",
+    title: "Rayan Koussa – Développeur Full-Stack Junior",
     description:
-      "Portfolio moderne de Rayan Koussa, développeur full-stack Next.js, TypeScript, Tailwind CSS, animations, dark mode, projets, contact.",
+      "Développeur full-stack junior : React, Node.js, PHP, MySQL. Backend et frontend.",
     images: ["/RK.jpg"],
     creator: "@rayankoussa",
+  },
+  verification: {
+    google: "your-google-site-verification-code",
   },
 };
 
@@ -53,16 +74,51 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="canonical" href="https://rayankoussa.vercel.app" />
+        <link rel="manifest" href="/manifest.json" />
+        
+        {/* JSON-LD Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Rayan Koussa",
+              url: "https://rayankoussa.vercel.app",
+              image: "https://rayankoussa.vercel.app/RK.jpg",
+              jobTitle: "Développeur Full-Stack Junior",
+              sameAs: [
+                "https://github.com/RCruento",
+                "https://linkedin.com/in/rayan-koussa",
+              ],
+              knowsAbout: [
+                "Next.js",
+                "React",
+                "TypeScript",
+                "Node.js",
+                "Express",
+                "MySQL",
+                "MongoDB",
+                "Tailwind CSS",
+              ],
+            }),
+          }}
+        />
+
         <Script
           async
           defer
-          data-domain="rayankoussa.fr"
+          data-domain="rayankoussa.vercel.app"
           src="https://plausible.io/js/script.js"
           strategy="afterInteractive"
         />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

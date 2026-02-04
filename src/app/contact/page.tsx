@@ -1,4 +1,19 @@
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Contact | Rayan Koussa",
+	description:
+		"Contactez Rayan Koussa pour une opportunité, une collaboration ou échanger. Disponible par email et sur les réseaux sociaux.",
+	keywords: ["contact", "email", "LinkedIn", "GitHub", "collaboration"],
+	openGraph: {
+		title: "Me Contacter - Rayan Koussa",
+		description:
+			"Contactez-moi pour discuter d'une opportunité, d'une collaboration ou simplement pour échanger sur le développement web.",
+		url: "https://rayankoussa.vercel.app/contact",
+		type: "website",
+	},
+};
 
 export default function ContactPage() {
   return (

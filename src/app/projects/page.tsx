@@ -1,6 +1,21 @@
 import { FaNodeJs, FaHtml5, FaPhp, FaJava, FaReact } from "react-icons/fa";
 import { SiMysql, SiMongodb, SiBootstrap, SiTypescript, SiJavascript, SiTailwindcss, SiNextdotjs, SiExpress, SiCplusplus } from "react-icons/si";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Projets | Rayan Koussa",
+	description:
+		"Découvrez les projets développés par Rayan Koussa : Portfolio Next.js, MBTI Explorer, Indexation HTML, Jeu Hearthstone et plus.",
+	keywords: ["projets", "portefeuille", "développement", "Next.js", "React", "Node.js"],
+	openGraph: {
+		title: "Mes Projets - Portfolio Rayan Koussa",
+		description:
+			"Découvrez mes projets développés avec Next.js, React, Node.js et d'autres technologies.",
+		url: "https://rayankoussa.vercel.app/projects",
+		type: "website",
+	},
+};
 
 const projects = [
 	{
@@ -8,19 +23,23 @@ const projects = [
 		image: "/RK.jpg",
 		description:
 			"Portfolio personnelle moderne avec Next.js, TypeScript, Tailwind CSS, Shadcn UI, animations et dark mode.",
+		altText: "Capture d'écran du portfolio Next.js de Rayan Koussa",
 		stacks: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI"],
+		github: "https://github.com/RCruento/Portfolio_CV"
 	},
 	{
 		title: "MBTI Explorer",
 		image: "https://mmj.azureedge.net/media/90903e37-919a-48a5-a93c-e39fe08b4386.webp",
 		description:
 			"Application web de lieux a explorier selon son test MBTI fais sur le site à l'aide d'une API, gestion utilisateurs et résultats.",
+		altText: "Application MBTI Explorer pour découvrir des lieux selon sa personnalité",
 		stacks: ["ReactJS", "Node.js", "Express", "MySQL", "API"],
 	},
 	{
 		title: "Indexation HTML",
 		image: "https://cujas.hypotheses.org/files/2022/07/Illustration_Lindexation-une-piste-pour-ameliorer-la-visibilite-de-ses-publications.jpg",
 		description: "Indexation de pages HTML et recherche avancée.",
+		altText: "Illustration du projet d'indexation de pages HTML",
 		stacks: ["HTML", "PHP", "Bootstrap", "MySQL"],
 		github: "https://github.com/RCruento/indexation-PHP",
 	},
@@ -28,6 +47,7 @@ const projects = [
 		title: "Jeu Hearthstone 2 joueurs",
 		image: "https://d39zum0jwvcigt.cloudfront.net/_next/static/images/default-4fff3c606c794dc03a915b9071f562d3.jpg",
 		description: "Jeu de cartes inspiré de Hearthstone pour 2 joueurs (15 cartes).",
+		altText: "Interface du jeu Hearthstone à 2 joueurs développé en Java",
 		stacks: ["Java"],
 		github: "https://github.com/RCruento/HearthStoneJava"
 	},
@@ -35,6 +55,7 @@ const projects = [
 		title: "PACMAN java",
 		image: "https://www.radiofrance.fr/pikapi/images/cce35344-1aa1-4345-b1f0-364440059de9/1200x680?webp=false",
 		description: "Réalisation du jeu PACMAN en Java",
+		altText: "Jeu PACMAN classique implémenté en Java",
 		stacks: ["Java"],
 		github: "https://github.com/RCruento/PacMan_Java"
 	},
@@ -42,6 +63,7 @@ const projects = [
 		title: "PACMAN C++ Graphes",
 		image: "https://www.radiofrance.fr/pikapi/images/cce35344-1aa1-4345-b1f0-364440059de9/1200x680?webp=false",
 		description: "Réalisation du jeu PACMAN C++ avec des graphes.",
+		altText: "PACMAN en C++ avec algorithmes de graphes pour l'IA",
 		stacks: ["C++"],
 		github: "https://github.com/RCruento/Pacman_IA_Graphe"
 	},
@@ -49,6 +71,7 @@ const projects = [
 		title: "Trombinoscope",
 		image: "https://www.web-creatif.net/wp-content/uploads/2009/03/trombinoscope-avatar.png",
 		description: "Calculatrice en ligne de commande.",
+		altText: "Trombinoscope en JavaScript avec HTML et CSS",
 		stacks: ["JavaScript", "HTML", "CSS"],
 		github: "https://github.com/RCruento/Trombinoscope"
 	},
@@ -56,13 +79,13 @@ const projects = [
 		title: "Client/serveur",
 		image: "https://www.geonov.fr/fig/client-server/client-server-2-tiers-small.png",
 		description: "Application client/serveur multi-protocoles.",
+		altText: "Architecture client/serveur à deux niveaux en C++ et Java",
 		stacks: ["C++", "Java"],
 	},
 	{
 		title: "Base de données PL/SQL",
 		image: "/file.svg",
-		description: "Gestion d’achats/ventes d’actions (PL/SQL).",
-		stacks: ["PL/SQL"],
+		description: "Gestion d’achats/ventes d’actions (PL/SQL).",		altText: "Système de gestion de base de données PL/SQL pour actions",		stacks: ["PL/SQL"],
 	},
 ];
 
@@ -86,7 +109,7 @@ export default function ProjectsPage() {
 					>
 						<Image
 							src={project.image}
-							alt={project.title}
+							alt={project.altText || project.title}
 							width={600}
 							height={200}
 							className="rounded-lg w-full h-40 object-cover mb-2 border border-muted"

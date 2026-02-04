@@ -1,0 +1,18 @@
+# Robots.txt pour rayankoussa.fr
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /_next/
+
+# Spécific bot rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://rayankoussa.vercel.app/sitemap.xml

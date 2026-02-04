@@ -8,11 +8,13 @@ Un portfolio moderne et minimaliste construit avec **Next.js**, **TypeScript**, 
 - 🌙 **Dark Mode** - Support complet du thème clair/sombre
 - ⚡ **Performance optimisée** - Next.js App Router avec optimisation des images
 - 📱 **Accessibilité** - Normes WCAG respectées
-- 🎯 **SEO-friendly** - Métadonnées optimisées
+- 🎯 **SEO optimisé** - Métadonnées complètes, Open Graph, Twitter Cards, JSON-LD schema
+- 🔍 **Référencement** - sitemap.xml, robots.txt, balises meta structurées
 - 💫 **Animations fluides** - Transitions et animations CSS personnalisées
 - 🔗 **Intégrations** - Liens vers GitHub, LinkedIn et réseaux sociaux
 - 📷 **Feed Instagram intégré** - Affichage du flux photo
 - 🎮 **Section Loisirs** - Guitare, Dessin, Cuisine, Jeux vidéo
+- 📊 **Analytics** - Suivi Plausible Analytics intégré
 
 ## 📋 Sections du portfolio
 
@@ -99,13 +101,16 @@ portfolio/
 ├── public/
 │   ├── RK.jpg                    # Photo de profil
 │   ├── CV_Rayan_K.pdf           # Curriculum Vitae
+│   ├── sitemap.xml              # Plan du site pour SEO
+│   ├── robots.txt               # Directives pour les moteurs de recherche
+│   ├── manifest.json            # Manifest PWA
 │   └── games/                    # Logos des jeux vidéo
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx              # Page d'accueil principale
 │   │   ├── projects/page.tsx     # Section projets
 │   │   ├── contact/page.tsx      # Contact
-│   │   ├── layout.tsx            # Layout global
+│   │   ├── layout.tsx            # Layout global + métadonnées SEO
 │   │   ├── globals.css           # Styles globaux
 │   │   └── components/           # Composants spécifiques à l'app
 │   ├── components/               # Composants réutilisables
@@ -128,6 +133,34 @@ portfolio/
 1. **Photo de profil** : Remplacez `public/RK.jpg`
 2. **CV** : Mettez à jour `public/CV_Rayan_K.pdf`
 3. **Texte** : Éditez les fichiers `.tsx` dans `src/app/` et `src/components/`
+
+## 🔍 Optimisation SEO
+
+Le site est optimisé pour le référencement avec :
+
+### Métadonnées structurées
+- **Open Graph** : Pour un aperçu optimisé sur les réseaux sociaux (Facebook, LinkedIn)
+- **Twitter Cards** : Cartes enrichies pour Twitter/X
+- **JSON-LD schema** : Données structurées pour Google (type Person)
+- **Keywords** : Mots-clés ciblés pour chaque page
+- **Canonical URLs** : Éviter le contenu dupliqué
+
+### Fichiers SEO
+- **sitemap.xml** : Plan du site pour les moteurs de recherche
+- **robots.txt** : Directives d'indexation pour les crawlers
+- **manifest.json** : Manifest PWA pour installation mobile
+
+### Images optimisées
+- **Alt text descriptifs** : Chaque image a un texte alternatif précis
+- **Next.js Image** : Optimisation automatique (WebP, lazy loading, responsive)
+- **Dimensions fixes** : Prévention du Cumulative Layout Shift (CLS)
+
+### Configuration recommandée
+Pour améliorer davantage le SEO :
+1. Ajoutez votre code Google Search Console dans `layout.tsx` (ligne 49)
+2. Soumettez votre sitemap à [Google Search Console](https://search.google.com/search-console)
+3. Vérifiez vos Core Web Vitals sur [PageSpeed Insights](https://pagespeed.web.dev/)
+4. Testez vos rich snippets avec [Rich Results Test](https://search.google.com/test/rich-results)
 4. **Couleurs** : Modifiez `tailwind.config.ts`
 
 ### Ajouter un nouveau domaine d'images
