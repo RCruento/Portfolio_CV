@@ -1,50 +1,184 @@
-# Modern Full Stack Portfolio
+# 🎨 Portfolio - Rayan Koussa
 
-This is a modern portfolio built with Next.js (App Router), TypeScript, Tailwind CSS, and Shadcn UI.
+Un portfolio moderne et minimaliste construit avec **Next.js**, **TypeScript**, **Tailwind CSS** et **Shadcn UI**. Présentant mon parcours académique, mes compétences, mes projets et mes loisirs.
 
-## Features
-- Sticky, glassmorphism navbar (futuristic, blur, transparency)
-- Home/About section with bio, CV download, stack icons
-- Projects, Skills (categorized, with flags for languages), Contact
-- Leisure section with Instagram link
-- Responsive, dark mode, smooth scroll
-- Tailwind CSS for layout, Shadcn UI for components, react-icons/lucide-react for icons
+## ✨ Fonctionnalités
 
-## Getting Started
+- ✅ **Design responsive** - Adapté à tous les appareils (mobile, tablette, desktop)
+- 🌙 **Dark Mode** - Support complet du thème clair/sombre
+- ⚡ **Performance optimisée** - Next.js App Router avec optimisation des images
+- 📱 **Accessibilité** - Normes WCAG respectées
+- 🎯 **SEO-friendly** - Métadonnées optimisées
+- 💫 **Animations fluides** - Transitions et animations CSS personnalisées
+- 🔗 **Intégrations** - Liens vers GitHub, LinkedIn et réseaux sociaux
+- 📷 **Feed Instagram intégré** - Affichage du flux photo
+- 🎮 **Section Loisirs** - Guitare, Dessin, Cuisine, Jeux vidéo
 
-First, run the development server:
+## 📋 Sections du portfolio
 
+### 🏠 Accueil
+- Présentation personnelle avec photo de profil
+- Stack technologique avec icônes
+- Boutons de contact et réseaux sociaux
+- Langues parlées
+
+### 📚 Parcours académique
+- Master 2 - Technologies de l'Hypermédia (Université Paris 8, 2023-2025)
+- Master 1 - Management de projets informatiques (École IRIS, 2020-2021)
+- Licence - Informatique (Université de Lorraine, 2015-2020)
+
+### 💻 Compétences
+- **Frontend** : React, Next.js, TypeScript, Tailwind CSS, Shadcn UI
+- **Backend** : Node.js, Express, PHP
+- **Bases de données** : MySQL, MongoDB, PL/SQL
+- **Autres** : Java, C++, Bootstrap, HTML, CSS, JavaScript
+- **Outils** : Git, ESLint, Docker
+
+### 🎮 Loisirs
+- 📷 **Photographie** - Feed Instagram intégré
+- 🎸 **Guitare**, 🎨 **Dessin**, 🍳 **Cuisine**
+- 🎮 **Jeux vidéo** : League of Legends, Sekiro, Elden Ring, Teamfight Tactics
+
+### 📁 Projets récents
+1. **Portfolio Next.js** - Ce portfolio moderne
+2. **MBTI Explorer** - Application de découverte de lieux basée sur votre profil MBTI
+3. **Application patrimoine** - Gestion et visualisation de patrimoine culturel
+4. **Indexation HTML** - Moteur d'indexation et recherche avancée
+5. **Jeux vidéo** - Hearthstone (Java), PACMAN (Java & C++)
+6. **Trombinoscope** - Application web interactive
+7. **Client/serveur** - Architecture multi-protocoles
+8. **Base de données** - Gestion d'achats/ventes d'actions (PL/SQL)
+
+## 🚀 Installation & Utilisation
+
+### Prérequis
+- Node.js 18+
+- npm ou yarn
+
+### Installation
 ```bash
+# Cloner le dépôt
+git clone https://github.com/rayankoussa/portfolio.git
+cd portfolio
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build pour la production
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Stack technique
 
-## Learn More
+```
+Frontend:
+- Next.js 15 (App Router)
+- TypeScript 5
+- Tailwind CSS 3
+- Shadcn UI
+- React Icons
+- Framer Motion
 
-To learn more about Next.js, take a look at the following resources:
+Infrastructure:
+- Vercel (recommandé)
+- Node.js
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Structure du projet
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+portfolio/
+├── public/
+│   ├── RK.jpg                    # Photo de profil
+│   ├── CV_Rayan_K.pdf           # Curriculum Vitae
+│   └── games/                    # Logos des jeux vidéo
+├── src/
+│   ├── app/
+│   │   ├── page.tsx              # Page d'accueil principale
+│   │   ├── projects/page.tsx     # Section projets
+│   │   ├── contact/page.tsx      # Contact
+│   │   ├── layout.tsx            # Layout global
+│   │   ├── globals.css           # Styles globaux
+│   │   └── components/           # Composants spécifiques à l'app
+│   ├── components/               # Composants réutilisables
+│   │   ├── Hobbies.tsx           # Section loisirs
+│   │   ├── AcademicTimeline.tsx  # Parcours académique
+│   │   ├── AppNavbar.tsx         # Navigation
+│   │   ├── SkillBadge.tsx        # Badges de compétences
+│   │   └── ui/                   # Composants Shadcn UI
+│   └── lib/
+│       └── utils.ts              # Fonctions utilitaires
+├── next.config.ts                # Configuration Next.js
+├── tailwind.config.ts            # Configuration Tailwind CSS
+├── tsconfig.json                 # Configuration TypeScript
+└── README.md                      # Ce fichier
+```
 
-## Deploy on Vercel
+## 🎨 Personnalisation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Modifier le contenu
+1. **Photo de profil** : Remplacez `public/RK.jpg`
+2. **CV** : Mettez à jour `public/CV_Rayan_K.pdf`
+3. **Texte** : Éditez les fichiers `.tsx` dans `src/app/` et `src/components/`
+4. **Couleurs** : Modifiez `tailwind.config.ts`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Ajouter un nouveau domaine d'images
+```typescript
+// Dans next.config.ts
+remotePatterns: [
+  {
+    protocol: 'https',
+    hostname: 'votre-domaine.com',
+  },
+]
+```
+
+## 🚢 Déploiement
+
+### Vercel (recommandé - gratuit)
+```bash
+npm install -g vercel
+vercel
+```
+
+### GitHub Pages
+```bash
+npm run build
+# Servez le contenu de .next
+```
+
+### Autres plateformes
+- Netlify
+- Railway
+- Render
+- AWS Amplify
+
+## 📞 Contact & Liens
+
+- **GitHub** : [rayankoussa](https://github.com/rayankoussa)
+- **LinkedIn** : [Rayan Koussa](https://linkedin.com/in/rayankoussa)
+- **Instagram** : [@rayan.koussa](https://instagram.com/rayan.koussa)
+- **Email** : [Votre email]
+
+## 📝 Licence
+
+Ce projet est open source sous la licence MIT - libre d'utilisation.
+
+## 🙏 Remerciements
+
+- [Next.js](https://nextjs.org/) - Framework React fullstack
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
+- [Shadcn UI](https://ui.shadcn.com/) - Composants React
+- [React Icons](https://react-icons.github.io/react-icons/) - Bibliothèque d'icônes
 
 ---
 
-Built with ❤️ using Next.js, Tailwind CSS, and Shadcn UI.
+**Fait avec ❤️ par Rayan Koussa**
