@@ -93,16 +93,16 @@ export default function ProjectsPage() {
 	return (
 		<section
 			id="projects"
-			className="w-full max-w-5xl mx-auto mt-20 mb-8 animate-fade-in-up group px-4"
+			className="w-full max-w-5xl mx-auto mt-12 sm:mt-16 md:mt-20 mb-6 sm:mb-8 animate-fade-in-up group px-4"
 		>
-			<h1 className="text-3xl font-bold mb-8 text-primary text-center">
+			<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-primary text-center">
 				Projets
 			</h1>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
 				{projects.map((project, idx) => (
 					<div
 						key={idx}
-						className="bg-card rounded-xl shadow p-6 flex flex-col gap-4 transition-transform duration-300 hover:scale-105 hover:shadow-primary/40 animate-fade-in-up"
+						className="bg-card rounded-xl shadow p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 transition-transform duration-300 hover:scale-105 hover:shadow-primary/40 animate-fade-in-up"
 						style={{
 							animationDelay: `${1000 + idx * 100}ms`,
 						}}
@@ -112,10 +112,10 @@ export default function ProjectsPage() {
 							alt={project.altText || project.title}
 							width={600}
 							height={200}
-							className="rounded-lg w-full h-40 object-cover mb-2 border border-muted"
+							className="rounded-lg w-full h-32 sm:h-40 object-cover mb-2 border border-muted"
 						/>
-						<h2 className="font-semibold text-lg">{project.title}</h2>
-						<p className="text-sm text-muted-foreground">
+						<h2 className="font-semibold text-base sm:text-lg">{project.title}</h2>
+						<p className="text-xs sm:text-sm text-muted-foreground">
 							{project.description}
 						</p>
 						<div className="flex flex-wrap gap-2 mt-2">

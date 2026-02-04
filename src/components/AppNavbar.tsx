@@ -23,10 +23,10 @@ export default function AppNavbar() {
 			)}
 			aria-label="Main navigation"
 		>
-			<div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-2">
+			<div className="max-w-5xl mx-auto flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3">
 				<Link
 					href="/"
-					className="font-bold text-lg tracking-tight text-primary"
+					className="font-bold text-base sm:text-lg tracking-tight text-primary"
 				>
 					Rayan Koussa
 				</Link>
@@ -55,12 +55,12 @@ export default function AppNavbar() {
 			</div>
 			{/* Mobile menu */}
 			{open && (
-				<div className="md:hidden bg-white/90 dark:bg-black/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 px-4 py-2 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4">
+				<div className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 px-4 py-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-4 shadow-lg">
 					{navLinks.map((link) => (
 						<Link
 							key={link.href}
 							href={link.href}
-							className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors font-medium px-2 py-1 rounded"
+							className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors font-medium px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-base"
 							onClick={() => setOpen(false)}
 						>
 							{link.label}
