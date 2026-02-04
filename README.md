@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Full Stack Portfolio
+
+This is a modern portfolio built with Next.js (App Router), TypeScript, Tailwind CSS, and Shadcn UI.
+
+## Features
+- Sticky, glassmorphism navbar (futuristic, blur, transparency)
+- Home/About section with bio, CV download, stack icons
+- Projects, Skills (categorized, with flags for languages), Contact
+- Leisure section with Instagram link
+- Responsive, dark mode, smooth scroll
+- Tailwind CSS for layout, Shadcn UI for components, react-icons/lucide-react for icons
 
 ## Getting Started
 
@@ -34,3 +44,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+Built with ❤️ using Next.js, Tailwind CSS, and Shadcn UI.
