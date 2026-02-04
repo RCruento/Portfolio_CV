@@ -82,6 +82,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="canonical" href="https://rayankoussa.vercel.app" />
         <link rel="manifest" href="/manifest.json" />
+        <meta name="google-site-verification" content="LiwGlKjCRi705INfmXEvEVi6otaW7wYjP-1oiC36oZE" />
         
         {/* JSON-LD Schema */}
         <script
