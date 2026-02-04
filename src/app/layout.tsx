@@ -4,6 +4,7 @@ import "./globals.css";
 import AppNavbar from "@/components/AppNavbar";
 import { ThemeProvider as AppThemeProvider } from "@/components/AppThemeProvider";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -127,6 +128,7 @@ export default function RootLayout({
           <AppNavbar />
           <div className="pt-16">{children}</div>
         </AppThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
