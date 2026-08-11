@@ -1,217 +1,58 @@
-# 🎨 Portfolio - Rayan Koussa
+# 🎮 Portfolio Cyber Game Engine HUD & Space Invaders Edition — Rayan KOUSSA
 
-Un portfolio moderne et minimaliste construit avec **Next.js**, **TypeScript**, **Tailwind CSS** et **Shadcn UI**. Présentant mon parcours académique, mes compétences, mes projets et mes loisirs.
-
-## ✨ Fonctionnalités
-
-- ✅ **Design responsive** - Adapté à tous les appareils (mobile, tablette, desktop)
-- 🌙 **Dark Mode** - Support complet du thème clair/sombre
-- ⚡ **Performance optimisée** - Next.js App Router avec optimisation des images
-- 📱 **Accessibilité** - Normes WCAG respectées
-- 🎯 **SEO optimisé** - Métadonnées complètes, Open Graph, Twitter Cards, JSON-LD schema
-- 🔍 **Référencement** - sitemap.xml, robots.txt, balises meta structurées
-- 💫 **Animations fluides** - Transitions et animations CSS personnalisées
-- 🔗 **Intégrations** - Liens vers GitHub, LinkedIn et réseaux sociaux
-- 📷 **Feed Instagram intégré** - Affichage du flux photo
-- 🎮 **Section Loisirs** - Guitare, Dessin, Cuisine, Jeux vidéo
-- 📊 **Analytics** - Suivi Plausible Analytics intégré
-
-## 📋 Sections du portfolio
-
-### 🏠 Accueil
-- Présentation personnelle avec photo de profil
-- Stack technologique avec icônes
-- Boutons de contact et réseaux sociaux
-- Langues parlées
-
-### 📚 Parcours académique
-- Master 2 - Technologies de l'Hypermédia (Université Paris 8, 2023-2025)
-- Master 1 - Management de projets informatiques (École IRIS, 2020-2021)
-- Licence - Informatique (Université de Lorraine, 2015-2020)
-
-### 💻 Compétences
-- **Frontend** : React, Next.js, TypeScript, Tailwind CSS, Shadcn UI
-- **Backend** : Node.js, Express, PHP
-- **Bases de données** : MySQL, MongoDB, PL/SQL
-- **Autres** : Java, C++, Bootstrap, HTML, CSS, JavaScript
-- **Outils** : Git, ESLint, Docker
-
-### 🎮 Loisirs
-- 📷 **Photographie** - Feed Instagram intégré
-- 🎸 **Guitare**, 🎨 **Dessin**, 🍳 **Cuisine**
-- 🎮 **Jeux vidéo** : League of Legends, Sekiro, Elden Ring, Teamfight Tactics
-
-### 📁 Projets récents
-1. **Portfolio Next.js** - Ce portfolio moderne
-2. **MBTI Explorer** - Application de découverte de lieux basée sur votre profil MBTI
-3. **Application patrimoine** - Gestion et visualisation de patrimoine culturel
-4. **Indexation HTML** - Moteur d'indexation et recherche avancée
-5. **Jeux vidéo** - Hearthstone (Java), PACMAN (Java & C++)
-6. **Trombinoscope** - Application web interactive
-7. **Client/serveur** - Architecture multi-protocoles
-8. **Base de données** - Gestion d'achats/ventes d'actions (PL/SQL)
-
-## 🚀 Installation & Utilisation
-
-### Prérequis
-- Node.js 18+
-- npm ou yarn
-
-### Installation
-```bash
-# Cloner le dépôt
-git clone https://github.com/rayankoussa/portfolio.git
-cd portfolio
-
-# Installer les dépendances
-npm install
-
-# Lancer le serveur de développement
-npm run dev
-```
-
-Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
-
-### Build pour la production
-```bash
-npm run build
-npm start
-```
-
-## 📦 Stack technique
-
-```
-Frontend:
-- Next.js 15 (App Router)
-- TypeScript 5
-- Tailwind CSS 3
-- Shadcn UI
-- React Icons
-- Framer Motion
-
-Infrastructure:
-- Vercel (recommandé)
-- Node.js
-```
-
-## 📁 Structure du projet
-
-```
-portfolio/
-├── public/
-│   ├── RK.jpg                    # Photo de profil
-│   ├── CV_Rayan_K.pdf           # Curriculum Vitae
-│   ├── sitemap.xml              # Plan du site pour SEO
-│   ├── robots.txt               # Directives pour les moteurs de recherche
-│   ├── manifest.json            # Manifest PWA
-│   └── games/                    # Logos des jeux vidéo
-├── src/
-│   ├── app/
-│   │   ├── page.tsx              # Page d'accueil principale
-│   │   ├── projects/page.tsx     # Section projets
-│   │   ├── contact/page.tsx      # Contact
-│   │   ├── layout.tsx            # Layout global + métadonnées SEO
-│   │   ├── globals.css           # Styles globaux
-│   │   └── components/           # Composants spécifiques à l'app
-│   ├── components/               # Composants réutilisables
-│   │   ├── Hobbies.tsx           # Section loisirs
-│   │   ├── AcademicTimeline.tsx  # Parcours académique
-│   │   ├── AppNavbar.tsx         # Navigation
-│   │   ├── SkillBadge.tsx        # Badges de compétences
-│   │   └── ui/                   # Composants Shadcn UI
-│   └── lib/
-│       └── utils.ts              # Fonctions utilitaires
-├── next.config.ts                # Configuration Next.js
-├── tailwind.config.ts            # Configuration Tailwind CSS
-├── tsconfig.json                 # Configuration TypeScript
-└── README.md                      # Ce fichier
-```
-
-## 🎨 Personnalisation
-
-### Modifier le contenu
-1. **Photo de profil** : Remplacez `public/RK.jpg`
-2. **CV** : Mettez à jour `public/CV_Rayan_K.pdf`
-3. **Texte** : Éditez les fichiers `.tsx` dans `src/app/` et `src/components/`
-
-## 🔍 Optimisation SEO
-
-Le site est optimisé pour le référencement avec :
-
-### Métadonnées structurées
-- **Open Graph** : Pour un aperçu optimisé sur les réseaux sociaux (Facebook, LinkedIn)
-- **Twitter Cards** : Cartes enrichies pour Twitter/X
-- **JSON-LD schema** : Données structurées pour Google (type Person)
-- **Keywords** : Mots-clés ciblés pour chaque page
-- **Canonical URLs** : Éviter le contenu dupliqué
-
-### Fichiers SEO
-- **sitemap.xml** : Plan du site pour les moteurs de recherche
-- **robots.txt** : Directives d'indexation pour les crawlers
-- **manifest.json** : Manifest PWA pour installation mobile
-
-### Images optimisées
-- **Alt text descriptifs** : Chaque image a un texte alternatif précis
-- **Next.js Image** : Optimisation automatique (WebP, lazy loading, responsive)
-- **Dimensions fixes** : Prévention du Cumulative Layout Shift (CLS)
-
-### Configuration recommandée
-Pour améliorer davantage le SEO :
-1. Ajoutez votre code Google Search Console dans `layout.tsx` (ligne 49)
-2. Soumettez votre sitemap à [Google Search Console](https://search.google.com/search-console)
-3. Vérifiez vos Core Web Vitals sur [PageSpeed Insights](https://pagespeed.web.dev/)
-4. Testez vos rich snippets avec [Rich Results Test](https://search.google.com/test/rich-results)
-4. **Couleurs** : Modifiez `tailwind.config.ts`
-
-### Ajouter un nouveau domaine d'images
-```typescript
-// Dans next.config.ts
-remotePatterns: [
-  {
-    protocol: 'https',
-    hostname: 'votre-domaine.com',
-  },
-]
-```
-
-## 🚢 Déploiement
-
-### Vercel (recommandé - gratuit)
-```bash
-npm install -g vercel
-vercel
-```
-
-### GitHub Pages
-```bash
-npm run build
-# Servez le contenu de .next
-```
-
-### Autres plateformes
-- Netlify
-- Railway
-- Render
-- AWS Amplify
-
-## 📞 Contact & Liens
-
-- **GitHub** : [rayankoussa](https://github.com/rayankoussa)
-- **LinkedIn** : [Rayan Koussa](https://linkedin.com/in/rayankoussa)
-- **Instagram** : [@rayan.koussa](https://instagram.com/rayan.koussa)
-- **Email** : [Votre email]
-
-## 📝 Licence
-
-Ce projet est open source sous la licence MIT - libre d'utilisation.
-
-## 🙏 Remerciements
-
-- [Next.js](https://nextjs.org/) - Framework React fullstack
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
-- [Shadcn UI](https://ui.shadcn.com/) - Composants React
-- [React Icons](https://react-icons.github.io/react-icons/) - Bibliothèque d'icônes
+> **Portfolio Interactif & Moteur de Jeu Vidéo WebGL / HTML5 Canvas**  
+> Développé par **Rayan KOUSSA** — Développeur Full-Stack (Master 2 Technologies de l'Hypermédia, Université Paris 8).
 
 ---
 
-**Fait avec ❤️ par Rayan Koussa**
+## 🌟 Aperçu & Fonctionnalités Majeures
+
+- **🎮 Interface Cyber Game Engine HUD** :
+  - **Player HP Scroll Bar** : Barre de santé supérieure indiquant le défilement et la progression à travers la page en temps réel.
+  - **Graphismes Dark Neon Obsidian** : High Contrast UI/UX conforme aux normes d'accessibilité (contraste > 7:1) et typographies cyber-futuristes (`Space Grotesk`, `JetBrains Mono`).
+  - **Zéro Emoji dans le Code Produit** : Icônes vectorielles SVG réactives précises (*Lucide Icons*, *React Icons*).
+
+- **👾 Space Invaders Arcade Arena Multi-Vagues (`ArcadeMiniGame.tsx`)** :
+  - Mini-jeu d'arcade **Space Invaders 2D Canvas** avec suivi précis du curseur de la souris à 100%.
+  - **Animation d'extension in-place** : L'écran de jeu s'élargit horizontalement et verticalement avec **Framer Motion** (`360px ➔ 540px`) lors du clic sur *START GAME*.
+  - **Vagues Infinies Progressives (WAVE 1 ➔ WAVE N)** : Vitesse progressive des envahisseurs, tirs aléatoires d'aliens, boucliers bunkers destructibles, et recharges de santé.
+
+- **📜 Expériences et Formations Synchronisées** :
+  - Formation académique complète : Master 2 Paris 8 IDEFI CréaTIC, Master 1 IRIS Paris, Licence Metz.
+  - Expériences professionnelles : Auto-entrepreneur, BASSETTI (Stage M2 - Puppeteer/jsPDF/SVN), Freelance (PHP/React/SQL), Beo-France (Stage M1 - WordPress/SEO).
+
+---
+
+## 🛠️ Stack Technique
+
+- **Framework** : Next.js 16 (App Router, Turbopack) & React 19
+- **Langage** : TypeScript
+- **Style & Animation** : Vanilla CSS custom variables, Tailwind CSS, Framer Motion
+- **3D & WebGL / Canvas** : Three.js (Arrière-plan 3D spatial), HTML5 2D Canvas (Space Invaders)
+- **Icônes & Effets** : Lucide React, React Icons, Canvas-Confetti
+
+---
+
+## 🚀 Installation & Lancement Local
+
+```bash
+# 1. Cloner le projet
+git clone https://github.com/RCruento/Portfolio_CV.git
+cd Portfolio_CV
+
+# 2. Installer les dépendances
+npm install
+
+# 3. Lancer le serveur de développement local
+npm run dev
+```
+
+Ouvrez ensuite [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+
+---
+
+## 📬 Contact & Réseaux
+
+- **LinkedIn** : [Rayan Koussa](https://linkedin.com/in/rayan-koussa-8b9a84183)
+- **GitHub** : [RCruento](https://github.com/RCruento)
+- **Localisation** : Cergy, 95000 — Île-de-France

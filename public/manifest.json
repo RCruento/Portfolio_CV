@@ -1,18 +1,24 @@
 {
-  "name": "Portfolio Rayan Koussa",
-  "short_name": "Portfolio RK",
-  "description": "Portfolio de Rayan Koussa, développeur full-stack spécialisé en Next.js et TypeScript",
+  "name": "Portfolio — Rayan Koussa",
+  "short_name": "Rayan Koussa",
+  "description": "Portfolio de Rayan Koussa, développeur full-stack junior spécialisé en Next.js et TypeScript.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#0d0d0f",
+  "theme_color": "#0d0d0f",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "/RK.jpg",
       "sizes": "800x600",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

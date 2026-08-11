@@ -1,73 +1,93 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Menu, Gamepad2 } from "lucide-react";
 import Link from "next/link";
-import { ThemeModeToggle } from "@/components/ThemeModeToggle";
+import { usePathname } from "next/navigation";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 const navLinks = [
-	{ href: "/", label: "Accueil" },
-	{ href: "/projects", label: "Projets" },
-	{ href: "/contact", label: "Contact" },
+  { href: "/", label: "STAGE 1 / ACCUEIL" },
+  { href: "/projects", label: "STAGE 2 / PROJETS" },
+  { href: "/contact", label: "STAGE 3 / CONTACT" },
 ];
 
 export default function AppNavbar() {
-	const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-	return (
-		<nav
-			className={cn(
-				"fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/60 dark:bg-black/40 border-b border-gray-200 dark:border-gray-800 transition-all",
-				"shadow-lg"
-			)}
-			aria-label="Main navigation"
-		>
-			<div className="max-w-5xl mx-auto flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3">
-				<Link
-					href="/"
-					className="font-bold text-base sm:text-lg tracking-tight text-primary"
-				>
-					Rayan Koussa
-				</Link>
-				<div className="hidden md:flex gap-6 items-center">
-					{navLinks.map((link) => (
-						<Link
-							key={link.href}
-							href={link.href}
-							className="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition-colors font-medium px-2 py-1 rounded"
-						>
-							{link.label}
-						</Link>
-					))}
-					<ThemeModeToggle />
-				</div>
-				<div className="md:hidden flex items-center gap-2">
-					<ThemeModeToggle />
-					<button
-						className="p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
-						aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-						onClick={() => setOpen((v) => !v)}
-					>
-						{open ? <X size={24} /> : <Menu size={24} />}
-					</button>
-				</div>
-			</div>
-			{/* Mobile menu */}
-			{open && (
-				<div className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800 px-4 py-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-4 shadow-lg">
-					{navLinks.map((link) => (
-						<Link
-							key={link.href}
-							href={link.href}
-							className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors font-medium px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-base"
-							onClick={() => setOpen(false)}
-						>
-							{link.label}
-						</Link>
-					))}
-				</div>
-			)}
-		</nav>
-	);
+  return (
+    <header className="fixed top-[28px] left-0 w-full z-40 bg-surface/90 backdrop-blur-md border-b border-cyan-400/40 py-2.5">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="font-display font-black text-lg sm:text-xl tracking-tight text-white hover:text-cyan-400 transition-colors flex items-center gap-2"
+        >
+          <div className="p-1.5 rounded-lg bg-gradient-to-tr from-rose-500 to-purple-600 text-white shadow-lg shadow-rose-500/50">
+            <Gamepad2 size={18} />
+          </div>
+          <span className="font-mono-label text-white">
+            RAYAN<span className="text-cyan-400 font-black">.GAME</span>
+          </span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-2">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "font-mono-label text-xs font-bold tracking-wider uppercase px-4 py-2 rounded-xl transition-all border",
+                  isActive
+                    ? "bg-rose-500/20 text-rose-400 border-rose-500 shadow-lg shadow-rose-500/30 font-black"
+                    : "border-transparent text-muted-foreground hover:text-white hover:border-cyan-400/40"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Mobile Sheet Trigger */}
+        <div className="md:hidden">
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild>
+              <button className="p-2 rounded-xl border border-rose-500 bg-black/60 text-white" aria-label="Menu">
+                <Menu size={20} />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-72 bg-black border-l-2 border-rose-500 p-6 flex flex-col gap-6">
+              <SheetTitle className="font-mono-label text-rose-500 font-black text-xl border-b-2 border-rose-500 pb-2">
+                NAVIGATION GAME
+              </SheetTitle>
+              <div className="flex flex-col gap-3 mt-4">
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "px-4 py-3 rounded-xl font-mono-label text-xs font-bold uppercase tracking-wider text-left border border-cyan-400/40",
+                        isActive ? "bg-rose-500 text-white" : "text-white hover:bg-rose-500/20"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </header>
+  );
 }

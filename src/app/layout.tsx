@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import AppNavbar from "@/components/AppNavbar";
+import { AppFooter } from "@/components/AppFooter";
+import { ThreeCanvasBackground } from "@/components/ThreeCanvasBackground";
 import { ThemeProvider as AppThemeProvider } from "@/components/AppThemeProvider";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,27 +11,58 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rayankoussa.vercel.app"),
-  title: "Rayan Koussa – Développeur Full-Stack Junior | Portfolio",
+  title: {
+    default: "Rayan Koussa – Développeur Full-Stack Junior | Portfolio Interactive 3D",
+    template: "%s | Rayan Koussa",
+  },
   description:
-    "Portfolio de Rayan Koussa, développeur full-stack junior. Compétences en React, Next.js, TypeScript, Node.js, PHP, MySQL. Backend et frontend.",
-  keywords: ["développeur web", "full-stack", "junior", "React", "TypeScript", "Node.js", "PHP", "MySQL", "portfolio"],
+    "Portfolio interactif 3D de Rayan Koussa, développeur full-stack junior. Spécialisé en React, Next.js, Motion, Three.js, TypeScript, Node.js, Go, PHP, MySQL.",
+  keywords: [
+    "Rayan Koussa",
+    "développeur web",
+    "full-stack junior",
+    "développeur React",
+    "Next.js 16",
+    "Three.js",
+    "Framer Motion",
+    "TypeScript",
+    "Node.js",
+    "PHP",
+    "MySQL",
+    "Go",
+    "Paris 8 Hypermédia",
+    "portfolio",
+  ],
   authors: [{ name: "Rayan Koussa", url: "https://rayankoussa.vercel.app" }],
   creator: "Rayan Koussa",
+  publisher: "Rayan Koussa",
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-snippet": -1,
       "max-image-preview": "large",
       "max-video-preview": -1,
@@ -39,9 +72,9 @@ export const metadata: Metadata = {
     canonical: "https://rayankoussa.vercel.app",
   },
   openGraph: {
-    title: "Rayan Koussa – Développeur Full-Stack Junior",
+    title: "Rayan Koussa – Développeur Full-Stack Junior | Portfolio",
     description:
-      "Développeur full-stack junior polyvalent. Compétences en React, Next.js, Node.js, PHP, MySQL et plus. Découvrez mes projets.",
+      "Développeur full-stack polyvalent. Compétences en Three.js, React, Next.js, Node.js, Go, MySQL et plus. Découvrez mes projets.",
     url: "https://rayankoussa.vercel.app",
     siteName: "Portfolio Rayan Koussa",
     images: [
@@ -49,7 +82,7 @@ export const metadata: Metadata = {
         url: "/RK.jpg",
         width: 800,
         height: 600,
-        alt: "Rayan Koussa – Développeur Full-Stack",
+        alt: "Rayan Koussa – Développeur Full-Stack Junior",
         type: "image/jpeg",
       },
     ],
@@ -59,8 +92,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rayan Koussa – Développeur Full-Stack Junior",
-    description:
-      "Développeur full-stack junior : React, Node.js, PHP, MySQL. Backend et frontend.",
+    description: "Développeur full-stack junior : Three.js, React, Motion, Node.js, PHP, Go.",
     images: ["/RK.jpg"],
     creator: "@rayankoussa",
   },
@@ -74,42 +106,79 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLdData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://rayankoussa.vercel.app/#person",
+      name: "Rayan Koussa",
+      givenName: "Rayan",
+      familyName: "Koussa",
+      url: "https://rayankoussa.vercel.app",
+      image: "https://rayankoussa.vercel.app/RK.jpg",
+      jobTitle: "Développeur Full-Stack Junior",
+      worksFor: {
+        "@type": "Organization",
+        name: "Freelance / Recherche Opportunité",
+      },
+      description:
+        "Développeur full-stack junior diplômé du Master 2 Technologies de l'Hypermédia (Université Paris 8). Spécialisé en React, Next.js, Three.js, Motion, TypeScript, Node.js et Go.",
+      alumniOf: [
+        {
+          "@type": "EducationalOrganization",
+          name: "Université Paris 8",
+          url: "https://www.univ-paris8.fr",
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Université de Lorraine",
+          url: "https://www.univ-lorraine.fr",
+        },
+      ],
+      sameAs: [
+        "https://github.com/RCruento",
+        "https://linkedin.com/in/rayan-koussa-8b9a84183",
+      ],
+      knowsAbout: [
+        "Next.js", "React", "Three.js", "Motion", "TypeScript", "Node.js", "Express",
+        "Go", "MySQL", "MongoDB", "Tailwind CSS", "PHP", "Java", "Web Security",
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://rayankoussa.vercel.app/#website",
+      url: "https://rayankoussa.vercel.app",
+      name: "Portfolio Rayan Koussa",
+      description: "Portfolio de Rayan Koussa, Développeur Full-Stack Junior.",
+      publisher: {
+        "@id": "https://rayankoussa.vercel.app/#person",
+      },
+      inLanguage: "fr-FR",
+    },
+  ];
+
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#030712" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="canonical" href="https://rayankoussa.vercel.app" />
         <link rel="manifest" href="/manifest.json" />
-        
-        {/* JSON-LD Schema */}
+
+        {/* Flash prevention */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.toggle("dark",t==="dark"||(!t&&true));}catch(e){}})();`,
+          }}
+        />
+
+        {/* Structured Data JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Rayan Koussa",
-              url: "https://rayankoussa.vercel.app",
-              image: "https://rayankoussa.vercel.app/RK.jpg",
-              jobTitle: "Développeur Full-Stack Junior",
-              sameAs: [
-                "https://github.com/RCruento",
-                "https://linkedin.com/in/rayan-koussa",
-              ],
-              knowsAbout: [
-                "Next.js",
-                "React",
-                "TypeScript",
-                "Node.js",
-                "Express",
-                "MySQL",
-                "MongoDB",
-                "Tailwind CSS",
-              ],
-            }),
+            __html: JSON.stringify(jsonLdData),
           }}
         />
 
@@ -122,11 +191,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col relative`}
       >
         <AppThemeProvider>
+          {/* Ambient 3D WebGL Background */}
+          <ThreeCanvasBackground />
+
           <AppNavbar />
-          <div className="pt-16">{children}</div>
+          <main className="pt-20 flex-1 relative z-10">{children}</main>
+          <AppFooter />
         </AppThemeProvider>
         <SpeedInsights />
       </body>
