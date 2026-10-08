@@ -8,6 +8,7 @@ import { ThemeProvider as AppThemeProvider } from "@/components/AppThemeProvider
 import { LanguageProvider } from "@/components/LanguageProvider";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { routing, type Locale } from "@/i18n/routing";
 import { getDictionary } from "@/i18n/dictionary";
 
@@ -224,6 +225,7 @@ export default async function LocalizedLayout({
           </AppThemeProvider>
         </LanguageProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
