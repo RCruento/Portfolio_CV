@@ -133,7 +133,9 @@ export function TechStackSection() {
               >
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-3">
-                    <div className="text-2xl shrink-0">{skill.icon}</div>
+                    <div className="text-2xl shrink-0" aria-hidden="true">
+                      {skill.icon}
+                    </div>
                     <span className="font-display font-extrabold text-sm text-white">
                       {skill.name}
                     </span>

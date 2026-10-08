@@ -28,9 +28,9 @@ export function AcademicTimeline() {
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-cyan-400/30 pb-2">
             <div className="flex items-center gap-2">
               <GraduationCap size={18} className="text-cyan-400 shrink-0" />
-              <h4 className="font-display font-extrabold text-base text-white">
+              <h3 className="font-display font-extrabold text-base text-white">
                 {item.degree}
-              </h4>
+              </h3>
             </div>
             <span className="hud-badge text-amber-400 border-amber-400 bg-amber-400/10">
               {item.period}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,15 +20,19 @@ import {
   MapPin,
   Building2,
 } from "lucide-react";
-import ReactCountryFlag from "react-country-flag";
+import { CountryFlag } from "@/components/CountryFlag";
 import { AcademicTimeline } from "@/components/AcademicTimeline";
 import { TechStackSection } from "@/components/TechStackSection";
-import { ArcadeMiniGame } from "@/components/ArcadeMiniGame";
 import { CustomCursor } from "@/components/CustomCursor";
 import { GameHUDOverlay } from "@/components/GameHUDOverlay";
 import Hobbies from "@/components/Hobbies";
 import { fireConfetti } from "@/lib/confetti";
 import { useLanguage } from "@/components/LanguageProvider";
+
+const ArcadeMiniGame = dynamic(
+  () => import("@/components/ArcadeMiniGame").then((m) => m.ArcadeMiniGame),
+  { ssr: false }
+);
 
 export function HomeView() {
   const { t, locale } = useLanguage();
@@ -57,21 +62,11 @@ export function HomeView() {
 
       {/* ── 1. HERO SECTION & PLAYER CARD ─────────────────────── */}
       <section className="w-full max-w-6xl mx-auto px-4 pt-8 sm:pt-12 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
-        {/* Left Column Bio */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center lg:items-start text-center lg:text-left gap-5 max-w-xl"
-        >
+        {/* Left Column Bio - SSR Immediate Rendering for ultra-fast LCP */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-5 max-w-xl">
           {/* Role Ticker */}
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full hud-card text-xs font-mono-label text-cyan-400 font-extrabold shadow-lg shadow-cyan-500/30"
-            >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full hud-card text-xs font-mono-label text-cyan-400 font-extrabold shadow-lg shadow-cyan-500/30">
               <Gamepad2 size={16} className="text-rose-500 animate-bounce" />
               <AnimatePresence mode="wait">
                 <motion.span
@@ -84,7 +79,7 @@ export function HomeView() {
                   {roles[roleIndex % roles.length]}
                 </motion.span>
               </AnimatePresence>
-            </motion.div>
+            </div>
 
             <span className="hud-badge text-amber-400 border-amber-400 bg-amber-400/10">
               {t.hero.playerReady}
@@ -96,7 +91,7 @@ export function HomeView() {
             {t.hero.fullNameFirst} <span className="text-rose-500 font-black">{t.hero.fullNameLast}</span>
           </h1>
 
-          {/* Bio from CV */}
+          {/* Bio from CV - Instant LCP Element */}
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {t.hero.bio}
           </p>
@@ -158,15 +153,10 @@ export function HomeView() {
               {t.hero.location}
             </span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Clean Player Gaming Card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full max-w-sm hud-card p-6 flex flex-col items-center gap-5 text-center bg-black/90 border-2 border-cyan-400 shadow-2xl"
-        >
+        <div className="w-full max-w-sm hud-card p-6 flex flex-col items-center gap-5 text-center bg-black/90 border-2 border-cyan-400 shadow-2xl">
           <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-rose-500 via-yellow-400 to-cyan-400 shadow-2xl shadow-rose-500/50">
             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-black">
               <Image src="/RK.jpg" alt="Rayan Koussa" fill sizes="144px" className="object-cover" priority />
@@ -174,9 +164,9 @@ export function HomeView() {
           </div>
 
           <div className="flex flex-col gap-1">
-            <h3 className="font-display font-black text-xl text-white">
+            <p className="font-display font-black text-xl text-white">
               {t.hero.fullNameFirst} {t.hero.fullNameLast}
-            </h3>
+            </p>
             <span className="font-mono-label text-xs text-cyan-400 font-bold uppercase">
               {t.hero.playerCard.playerTitle}
             </span>
@@ -200,7 +190,7 @@ export function HomeView() {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ── 2. DEDICATED ARCADE MINI-GAME SECTION ───────────────── */}
@@ -269,9 +259,9 @@ export function HomeView() {
         <div className="lg:col-span-6 flex flex-col gap-6">
           <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-3">
             <Trophy size={20} className="text-amber-400" />
-            <h3 className="font-display font-black text-xl text-white">
+            <h2 className="font-display font-black text-xl text-white">
               {t.quests.educationTitle}
-            </h3>
+            </h2>
           </div>
           <AcademicTimeline />
         </div>
@@ -280,9 +270,9 @@ export function HomeView() {
         <div className="lg:col-span-6 flex flex-col gap-6">
           <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-3">
             <Zap size={20} className="text-rose-500" />
-            <h3 className="font-display font-black text-xl text-white">
+            <h2 className="font-display font-black text-xl text-white">
               {t.quests.experienceTitle}
-            </h3>
+            </h2>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -296,9 +286,9 @@ export function HomeView() {
                 className="hud-card p-5 flex flex-col gap-3 group hover:border-rose-500 transition-all"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rose-500/30 pb-2">
-                  <h4 className="font-display font-extrabold text-base text-white">
+                  <h3 className="font-display font-extrabold text-base text-white">
                     {exp.title}
-                  </h4>
+                  </h3>
                   <span className="hud-badge text-amber-400 border-amber-400 bg-amber-400/10">
                     {exp.period}
                   </span>
@@ -344,9 +334,9 @@ export function HomeView() {
         <div className="hud-card p-6 flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-2">
             <UserCheck size={20} className="text-emerald-400" />
-            <h3 className="font-display font-black text-lg text-white">
+            <h2 className="font-display font-black text-lg text-white">
               {t.softSkills.title}
-            </h3>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -366,9 +356,9 @@ export function HomeView() {
         <div className="hud-card p-6 flex flex-col gap-4">
           <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-2">
             <Heart size={20} className="text-rose-500" />
-            <h3 className="font-display font-black text-lg text-white">
+            <h2 className="font-display font-black text-lg text-white">
               {t.volunteering.title}
-            </h3>
+            </h2>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -393,15 +383,15 @@ export function HomeView() {
         <div className="hud-card p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col text-center sm:text-left">
             <span className="hud-badge text-cyan-400 border-cyan-400">{t.languages.badge}</span>
-            <h3 className="font-display font-black text-lg text-white mt-1">
+            <h2 className="font-display font-black text-lg text-white mt-1">
               {t.languages.title}
-            </h3>
+            </h2>
           </div>
 
           <div className="flex flex-wrap gap-4 items-center justify-center">
             {t.languages.items.map(({ code, label, level }) => (
               <div key={code} className="flex items-center gap-3 p-3 rounded-xl bg-black/60 border border-cyan-400/50">
-                <ReactCountryFlag countryCode={code} svg style={{ width: "2em", height: "2em" }} />
+                <CountryFlag code={code} label={label} className="w-8 h-6" />
                 <div className="flex flex-col">
                   <span className="font-display font-bold text-xs text-white uppercase">{label}</span>
                   <span className="font-mono-label text-[10px] text-amber-400 font-bold">{level}</span>

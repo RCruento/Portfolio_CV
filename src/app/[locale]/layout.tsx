@@ -208,7 +208,7 @@ export default async function LocalizedLayout({
           defer
           data-domain="rayankoussa.vercel.app"
           src="https://plausible.io/js/script.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body

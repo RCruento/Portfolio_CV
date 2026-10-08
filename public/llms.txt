@@ -1,0 +1,25 @@
+# Rayan Koussa – Full-Stack Software Engineer Portfolio
+
+> Full-Stack Software Engineer holding a Master of Science in Hypermedia & Interactive Technologies from Paris 8 University. Specialized in high-performance web applications, real-time distributed systems, and 3D WebGL experiences with Next.js, React, TypeScript, Go, and Three.js.
+
+## Main Pages
+- [Home Page](https://rayankoussa.vercel.app/en): Interactive 3D portfolio, biography, skills, and academic timeline
+- [Projects Showcase](https://rayankoussa.vercel.app/en/projects): Full-stack web applications, algorithmic trading engines, and interactive game projects
+- [Contact Page](https://rayankoussa.vercel.app/en/contact): Direct message form, contact details, and resume download
+
+## Featured Engineering Projects
+- [MBTI Explorer](https://rayankoussa.vercel.app/en/projects): Interactive personality-driven location discovery platform built with React, Node.js, Express, and MySQL
+- [KuCoinBot v10](https://rayankoussa.vercel.app/en/projects): High-frequency cryptocurrency scalping engine in Go featuring real-time orderbook scoring and fractional Kelly sizing
+- [Super Arcade 3D Portfolio](https://rayankoussa.vercel.app/en/projects): Cyberpunk interactive portfolio built with Next.js 16, Three.js 3D WebGL Vector Core, and Framer Motion
+- [HTML Semantic Indexing Engine](https://rayankoussa.vercel.app/en/projects): Semantic search engine and crawler with TF-IDF indexing relevance scoring in PHP and MySQL
+
+## Technical Stack & Core Competencies
+- Frontend: Next.js 16, React 19, TypeScript, Three.js, WebGL, Tailwind CSS, Framer Motion
+- Backend: Go, Node.js, Express, PHP, RESTful APIs, WebSockets
+- Databases: PostgreSQL, MySQL, MongoDB, Oracle PL/SQL
+- Architecture: Systems Programming, High-Frequency Trading Systems, Multi-threading, Network Sockets TCP/IP
+
+## Professional Profiles & Social Links
+- [GitHub Profile](https://github.com/RCruento): Open-source repositories and software projects
+- [LinkedIn Profile](https://www.linkedin.com/in/rayan-koussa/): Professional experience, education, and credentials
+- [Email Contact](mailto:rayan.koussa@outlook.fr): Direct email communication
