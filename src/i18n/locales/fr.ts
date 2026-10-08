@@ -4,7 +4,7 @@ export const fr = {
     title: "Rayan Koussa – Ingénieur Logiciel & Développeur Full-Stack | Portfolio 3D",
     titleTemplate: "%s | Rayan Koussa",
     description:
-      "Ingénieur Logiciel & Développeur Full-Stack (Master 2 Hypermédia). Conception d'applications web haute performance, systèmes temps réel et expériences 3D WebGL avec Next.js, React, TypeScript, Go et Three.js.",
+      "Ingénieur logiciel & développeur Full-Stack spécialisé en React, Next.js, TypeScript, Go et Three.js. Applications web modernes et expériences 3D WebGL.",
     keywords: [
       "Rayan Koussa",
       "ingénieur logiciel",
@@ -32,7 +32,7 @@ export const fr = {
     personOrg: "Freelance / Recherche Opportunités",
     projectsTitle: "Projets & Réalisations",
     projectsDescription:
-      "Explorez les réalisations techniques de Rayan Koussa : plateformes web Next.js/React, bots de trading haute fréquence en Go, jeux interactifs Java/C++ et moteurs d'indexation.",
+      "Explorez les projets de Rayan Koussa : applications web Next.js, moteurs de trading en Go et expériences 3D WebGL temps réel interactives.",
     contactTitle: "Me Contacter",
     contactDescription:
       "Contactez Rayan Koussa pour vos opportunités d'emploi, missions freelance ou projets web. Formulaire de contact direct, email et réseaux professionnels.",

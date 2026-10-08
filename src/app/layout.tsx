@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | Rayan Koussa",
   },
   description:
-    "Full-Stack Software Engineer (M.S. Hypermedia). Building high-performance web applications, real-time distributed systems, and interactive 3D WebGL experiences with Next.js, React, TypeScript, Go & Three.js.",
+    "Full-Stack Software Engineer specializing in Next.js, React, TypeScript, Go & Three.js. Building scalable web apps and interactive 3D experiences.",
   keywords: [
     "Rayan Koussa",
     "Full-Stack Software Engineer",

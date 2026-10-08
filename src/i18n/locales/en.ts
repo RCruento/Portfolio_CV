@@ -4,7 +4,7 @@ export const en = {
     title: "Rayan Koussa – Full-Stack Software Engineer | 3D Interactive Portfolio",
     titleTemplate: "%s | Rayan Koussa",
     description:
-      "Full-Stack Software Engineer (M.S. Hypermedia). Building high-performance web applications, real-time distributed systems, and interactive 3D WebGL experiences with Next.js, React, TypeScript, Go & Three.js.",
+      "Full-Stack Software Engineer specializing in Next.js, React, TypeScript, Go & Three.js. Building scalable web apps and interactive 3D experiences.",
     keywords: [
       "Rayan Koussa",
       "Full-Stack Software Engineer",
@@ -33,10 +33,10 @@ export const en = {
     personOrg: "Freelance / Open to Opportunities",
     projectsTitle: "Projects & Engineering Works",
     projectsDescription:
-      "Explore software engineering projects by Rayan Koussa: Next.js/React full-stack web applications, Go HFT trading engines, Java/C++ game engines, and distributed architectures.",
+      "Explore software engineering projects by Rayan Koussa: Next.js full-stack web apps, Go trading engines, and interactive 3D WebGL experiences.",
     contactTitle: "Get in Touch",
     contactDescription:
-      "Get in touch with Rayan Koussa for software engineering opportunities, freelance projects, or technical collaboration. Contact form, email, and professional networks.",
+      "Contact Rayan Koussa for software engineering roles, freelance projects, or technical collaboration. Available via email, LinkedIn, and GitHub.",
   },
   hud: {
     playerHp: "PLAYER HP",

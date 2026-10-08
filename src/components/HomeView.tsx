@@ -95,7 +95,9 @@ export function HomeView() {
 
           {/* Title */}
           <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.05] text-white">
-            {t.hero.fullNameFirst} <span className="text-rose-500 font-black">{t.hero.fullNameLast}</span>
+            <span>{t.hero.fullNameFirst} </span>
+            <span className="text-rose-500 font-black">{t.hero.fullNameLast}</span>
+            <span className="sr-only"> – {locale === "fr" ? "Ingénieur Logiciel & Développeur Full-Stack" : "Full-Stack Software Engineer"}</span>
           </h1>
 
           {/* Bio from CV - Instant LCP Element */}

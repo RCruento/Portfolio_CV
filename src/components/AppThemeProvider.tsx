@@ -13,23 +13,20 @@ export const ThemeContext = React.createContext<{
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = React.useState<Theme>("light");
-  const [mounted, setMounted] = React.useState(false);
+  const [theme, setTheme] = React.useState<Theme>("dark");
 
   React.useEffect(() => {
-    // Lecture du thème après le montage
+    // Read theme from storage on client mount
     const stored = localStorage.getItem("theme") as Theme | null;
-    setTheme(stored || "dark");
-    setMounted(true);
+    if (stored) {
+      setTheme(stored);
+    }
   }, []);
 
   React.useEffect(() => {
-    if (!mounted) return;
     document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
-
-  if (!mounted) return null;
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
