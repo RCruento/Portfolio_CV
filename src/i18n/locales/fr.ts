@@ -1,15 +1,15 @@
 export const fr = {
   locale: "fr",
   meta: {
-    title: "Rayan Koussa – Développeur Full-Stack & Ingénieur Logiciel | Portfolio 3D",
+    title: "Rayan Koussa – Ingénieur Logiciel & Développeur Full-Stack | Portfolio 3D",
     titleTemplate: "%s | Rayan Koussa",
     description:
-      "Portfolio interactif 3D de Rayan Koussa, ingénieur logiciel et développeur full-stack. Spécialisé en React, Next.js, WebGL/Three.js, TypeScript, Node.js, Go, PHP et architectures SQL/NoSQL.",
+      "Ingénieur Logiciel & Développeur Full-Stack (Master 2 Hypermédia). Conception d'applications web haute performance, systèmes temps réel et expériences 3D WebGL avec Next.js, React, TypeScript, Go et Three.js.",
     keywords: [
       "Rayan Koussa",
-      "développeur web",
       "ingénieur logiciel",
       "développeur full-stack",
+      "développeur web",
       "développeur React",
       "Next.js 16",
       "Three.js",
@@ -20,14 +20,15 @@ export const fr = {
       "Paris 8 Hypermédia",
       "portfolio 3D",
     ],
-    ogTitle: "Rayan Koussa – Développeur Full-Stack & Ingénieur Logiciel | Portfolio",
+    ogTitle: "Rayan Koussa – Ingénieur Logiciel & Développeur Full-Stack | Portfolio",
     ogDescription:
-      "Développeur full-stack polyvalent. Compétences approfondies en Next.js, Three.js, React, Node.js, Go, MySQL et plus. Découvrez mes réalisations logicielles.",
-    ogImageAlt: "Rayan Koussa – Développeur Full-Stack",
-    twitterDescription: "Développeur full-stack : Three.js, React, Next.js, Node.js, PHP, Go, TypeScript.",
-    personJobTitle: "Développeur Full-Stack & Ingénieur Logiciel",
+      "Découvrez mes réalisations logicielles : applications web Next.js/React, bots de trading haute fréquence en Go et expériences 3D WebGL interactives.",
+    ogImageAlt: "Rayan Koussa – Ingénieur Logiciel & Développeur Full-Stack",
+    twitterDescription:
+      "Ingénieur Logiciel & Développeur Full-Stack : applications web Next.js, microservices Go et 3D WebGL.",
+    personJobTitle: "Ingénieur Logiciel & Développeur Full-Stack",
     personDescription:
-      "Développeur full-stack diplômé du Master 2 Technologies de l'Hypermédia (Université Paris 8). Spécialisé en React, Next.js, Three.js, Motion, TypeScript, Node.js et Go.",
+      "Ingénieur logiciel et développeur Full-Stack diplômé d'un Master 2 en Technologies de l'Hypermédia (Université Paris 8). Spécialisé en architectures web modernes React/Next.js, moteurs temps réel Go et expériences 3D Three.js.",
     personOrg: "Freelance / Recherche Opportunités",
     projectsTitle: "Projets & Réalisations",
     projectsDescription:

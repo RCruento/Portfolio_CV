@@ -16,8 +16,7 @@ export async function generateMetadata({
 
   return {
     title: {
-      default: dict.meta.title,
-      template: dict.meta.titleTemplate,
+      absolute: dict.meta.title,
     },
     description: dict.meta.description,
     alternates: {

@@ -4,12 +4,12 @@ export const en = {
     title: "Rayan Koussa – Full-Stack Software Engineer | 3D Interactive Portfolio",
     titleTemplate: "%s | Rayan Koussa",
     description:
-      "Interactive 3D Portfolio of Rayan Koussa, Full-Stack Software Engineer. Specializing in React, Next.js, WebGL/Three.js, TypeScript, Node.js, Go, PHP, and scalable SQL/NoSQL architectures.",
+      "Full-Stack Software Engineer (M.S. Hypermedia). Building high-performance web applications, real-time distributed systems, and interactive 3D WebGL experiences with Next.js, React, TypeScript, Go & Three.js.",
     keywords: [
       "Rayan Koussa",
       "Full-Stack Software Engineer",
+      "Software Engineer",
       "Full-Stack Developer",
-      "Software Engineer Paris",
       "React Developer",
       "Next.js 16",
       "Three.js",
@@ -17,18 +17,19 @@ export const en = {
       "TypeScript",
       "Node.js",
       "Go Developer",
-      "High Frequency Trading Bot",
+      "High Frequency Trading",
       "Paris 8 Hypermedia",
       "Interactive Portfolio",
     ],
     ogTitle: "Rayan Koussa – Full-Stack Software Engineer | Portfolio",
     ogDescription:
-      "Versatile Full-Stack Software Engineer with expertise in Next.js, Three.js, React, Node.js, Go, and relational databases. Discover my engineering projects and interactive work.",
+      "Explore high-performance web applications, real-time trading engines, and interactive 3D experiences built with Next.js, TypeScript, Go & Three.js.",
     ogImageAlt: "Rayan Koussa – Full-Stack Software Engineer",
-    twitterDescription: "Full-Stack Software Engineer : Next.js, Three.js, React, Node.js, Go, TypeScript.",
+    twitterDescription:
+      "Full-Stack Software Engineer: High-performance web applications, Go engines, and 3D WebGL experiences.",
     personJobTitle: "Full-Stack Software Engineer",
     personDescription:
-      "Full-Stack Software Engineer holding a Master of Science in Hypermedia & Interactive Technologies from Paris 8 University. Specialized in building modern web applications, real-time distributed backends, and 3D WebGL experiences with Next.js, TypeScript, Node.js, and Go.",
+      "Full-Stack Software Engineer with a Master of Science in Hypermedia & Interactive Technologies (Paris 8). Specializing in modern web applications, real-time distributed backends, and 3D WebGL experiences with Next.js, TypeScript, Node.js, and Go.",
     personOrg: "Freelance / Open to Opportunities",
     projectsTitle: "Projects & Engineering Works",
     projectsDescription:

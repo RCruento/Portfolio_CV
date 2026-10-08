@@ -1,8 +1,8 @@
 {
-  "name": "Portfolio — Rayan Koussa",
+  "name": "Rayan Koussa – Full-Stack Software Engineer",
   "short_name": "Rayan Koussa",
-  "description": "Portfolio de Rayan Koussa, développeur full-stack junior spécialisé en Next.js et TypeScript.",
-  "start_url": "/",
+  "description": "Portfolio of Rayan Koussa, Full-Stack Software Engineer. Building high-performance web applications, real-time systems, and 3D WebGL experiences.",
+  "start_url": "/en",
   "display": "standalone",
   "background_color": "#0d0d0f",
   "theme_color": "#0d0d0f",
