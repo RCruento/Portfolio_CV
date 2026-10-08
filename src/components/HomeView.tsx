@@ -31,7 +31,14 @@ import { useLanguage } from "@/components/LanguageProvider";
 
 const ArcadeMiniGame = dynamic(
   () => import("@/components/ArcadeMiniGame").then((m) => m.ArcadeMiniGame),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full max-w-6xl mx-auto h-[360px] rounded-2xl bg-black/60 border-2 border-cyan-400/30 flex items-center justify-center my-8 font-mono-label text-xs text-muted-foreground">
+        <span className="animate-pulse">Loading Arcade Console...</span>
+      </div>
+    ),
+  }
 );
 
 export function HomeView() {

@@ -104,6 +104,8 @@ export function ThreeCanvasBackground() {
 
       const animate = () => {
         animationId = requestAnimationFrame(animate);
+        if (document.hidden) return;
+
         const elapsed = (performance.now() - startTime) * 0.001;
 
         targetX += (mouseX - targetX) * 0.05;
@@ -142,19 +144,42 @@ export function ThreeCanvasBackground() {
       };
     };
 
-    // Defer WebGL scene initialization until after initial paint & main thread is idle
-    const timerId =
-      typeof requestIdleCallback !== "undefined"
-        ? requestIdleCallback(init, { timeout: 1500 })
-        : setTimeout(init, 300);
+    // Don't initialize if reduced motion is requested
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let triggered = false;
+
+    // Fallback: load after 4s when main thread has completely settled
+    const fallbackTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
+      trigger();
+    }, 4000);
+
+    const trigger = () => {
+      if (triggered || isDisposed) return;
+      triggered = true;
+      window.removeEventListener("scroll", trigger);
+      window.removeEventListener("pointermove", trigger);
+      window.removeEventListener("touchstart", trigger);
+      clearTimeout(fallbackTimer);
+
+      if (typeof requestIdleCallback !== "undefined") {
+        requestIdleCallback(init);
+      } else {
+        setTimeout(init, 100);
+      }
+    };
+
+    // Load seamlessly on user's first natural interaction
+    window.addEventListener("scroll", trigger, { passive: true, once: true });
+    window.addEventListener("pointermove", trigger, { passive: true, once: true });
+    window.addEventListener("touchstart", trigger, { passive: true, once: true });
 
     return () => {
       isDisposed = true;
-      if (typeof cancelIdleCallback !== "undefined" && typeof timerId === "number") {
-        cancelIdleCallback(timerId);
-      } else {
-        clearTimeout(timerId as unknown as ReturnType<typeof setTimeout>);
-      }
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      window.removeEventListener("scroll", trigger);
+      window.removeEventListener("pointermove", trigger);
+      window.removeEventListener("touchstart", trigger);
       cleanupFn?.();
     };
   }, []);

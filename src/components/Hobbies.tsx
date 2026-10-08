@@ -38,7 +38,7 @@ const GAMES: GameItem[] = [
 ];
 
 export default function Hobbies() {
-  const [showInsta, setShowInsta] = useState(true);
+  const [showInsta, setShowInsta] = useState(false);
   const { t } = useLanguage();
 
   const creativePassions = [
@@ -87,13 +87,35 @@ export default function Hobbies() {
             </button>
           </div>
 
-          {showInsta && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="w-full overflow-hidden rounded-2xl border border-border-subtle bg-black/40"
-            >
+          {!showInsta ? (
+            <div className="w-full rounded-2xl border border-dashed border-border-subtle bg-black/30 p-6 flex flex-col items-center justify-center gap-3 text-center">
+              <div className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center border border-rose-500/20">
+                <Instagram size={20} />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="font-display font-semibold text-sm text-foreground">@rayan.koussa</span>
+                <span className="font-mono-label text-xs text-muted-foreground">{t.hobbies.photography.desc}</span>
+              </div>
+              <div className="flex items-center gap-2 mt-1">
+                <button
+                  onClick={() => setShowInsta(true)}
+                  className="px-3.5 py-1.5 rounded-lg text-xs font-mono-label font-bold bg-rose-500 text-white hover:bg-rose-600 transition-colors cursor-pointer"
+                >
+                  {t.hobbies.photography.showFeed}
+                </button>
+                <a
+                  href="https://www.instagram.com/rayan.koussa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-mono-label text-muted-foreground hover:text-foreground border border-border-subtle transition-colors"
+                >
+                  <span>Instagram</span>
+                  <ExternalLink size={11} />
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="w-full overflow-hidden rounded-2xl border border-border-subtle bg-black/40">
               <iframe
                 src="https://www.instagram.com/rayan.koussa/embed/"
                 title="Feed Instagram Photographie"
@@ -101,7 +123,7 @@ export default function Hobbies() {
                 allow="encrypted-media"
                 loading="lazy"
               />
-            </motion.div>
+            </div>
           )}
         </motion.div>
 

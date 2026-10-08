@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { Play, RotateCcw, Shield, Trophy, Zap, Award } from "lucide-react";
 import { fireConfetti } from "@/lib/confetti";
 import { useLanguage } from "./LanguageProvider";
@@ -42,9 +41,13 @@ export function ArcadeMiniGame() {
   const scoreRef = useRef(0);
   const waveRef = useRef(1);
   const shieldRef = useRef(100);
+  const loopRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     gameStateRef.current = gameState;
+    if (gameState === "PLAYING") {
+      loopRef.current?.();
+    }
   }, [gameState]);
 
   const handleStartGame = () => {
@@ -103,19 +106,28 @@ export function ArcadeMiniGame() {
       { x: canvas.width - 190, y: canvas.height - 90, width: 70, height: 16, hp: 15 },
     ];
 
+    let cachedRect: DOMRect | null = null;
+    const updateRect = () => {
+      cachedRect = canvas.getBoundingClientRect();
+    };
+    updateRect();
+    window.addEventListener("resize", updateRect, { passive: true });
+
     // Pixel-exact Mouse & Touch Tracking
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const mouseX = (e.clientX - rect.left) * scaleX;
+      if (!cachedRect) updateRect();
+      if (!cachedRect || cachedRect.width === 0) return;
+      const scaleX = canvas.width / cachedRect.width;
+      const mouseX = (e.clientX - cachedRect.left) * scaleX;
       cannonX = Math.max(30, Math.min(canvas.width - 30, mouseX));
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const touchX = (e.touches[0].clientX - rect.left) * scaleX;
+        if (!cachedRect) updateRect();
+        if (!cachedRect || cachedRect.width === 0) return;
+        const scaleX = canvas.width / cachedRect.width;
+        const touchX = (e.touches[0].clientX - cachedRect.left) * scaleX;
         cannonX = Math.max(30, Math.min(canvas.width - 30, touchX));
       }
     };
@@ -130,14 +142,33 @@ export function ArcadeMiniGame() {
       }
     };
 
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("touchmove", handleTouchMove);
+    canvas.addEventListener("mousemove", handleMouseMove, { passive: true });
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
+    canvas.addEventListener("mouseenter", updateRect, { passive: true });
     canvas.addEventListener("click", handleShoot);
 
-    let animId: number;
+    const drawStaticPreview = () => {
+      ctx.fillStyle = "#05060f";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(0, 240, 255, 0.25)";
+      for (let i = 0; i < 30; i++) {
+        const sx = ((i * 45) % canvas.width);
+        const sy = ((i * 35) % canvas.height);
+        ctx.fillRect(sx, sy, 2, 2);
+      }
+    };
+
+    drawStaticPreview();
+
+    let animId: number | null = null;
 
     // Main Loop
     const loop = () => {
+      if (gameStateRef.current !== "PLAYING") {
+        animId = null;
+        return;
+      }
+
       animId = requestAnimationFrame(loop);
 
       ctx.fillStyle = "#05060f";
@@ -280,19 +311,23 @@ export function ArcadeMiniGame() {
       });
 
       // Draw Player Cannon (Strictly follows mouse position)
-      if (gameStateRef.current !== "GAMEOVER") {
-        ctx.fillStyle = "#00f0ff";
-        ctx.fillRect(cannonX - 22, canvas.height - 35, 44, 14);
-        ctx.fillRect(cannonX - 6, canvas.height - 45, 12, 10);
+      ctx.fillStyle = "#00f0ff";
+      ctx.fillRect(cannonX - 22, canvas.height - 35, 44, 14);
+      ctx.fillRect(cannonX - 6, canvas.height - 45, 12, 10);
+    };
+
+    loopRef.current = () => {
+      if (!animId) {
+        animId = requestAnimationFrame(loop);
       }
     };
 
-    animId = requestAnimationFrame(loop);
-
     return () => {
-      cancelAnimationFrame(animId);
+      if (animId) cancelAnimationFrame(animId);
+      window.removeEventListener("resize", updateRect);
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("mouseenter", updateRect);
       canvas.removeEventListener("click", handleShoot);
     };
   }, []);
@@ -301,13 +336,10 @@ export function ArcadeMiniGame() {
   const isPlaying = gameState === "PLAYING";
 
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      layout
-      initial={false}
-      animate={{ height: isPlaying ? 540 : 360 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full max-w-6xl mx-auto rounded-2xl overflow-hidden hud-card border-2 border-cyan-400 flex flex-col justify-between p-4 bg-black shadow-2xl my-8"
+      style={{ height: isPlaying ? 540 : 360 }}
+      className="relative w-full max-w-6xl mx-auto rounded-2xl overflow-hidden hud-card border-2 border-cyan-400 flex flex-col justify-between p-4 bg-black shadow-2xl my-8 transition-[height] duration-500 ease-out"
     >
       {/* Top Game HUD Bar */}
       <div className="flex items-center justify-between z-10 font-mono-label text-xs font-bold text-white border-b border-cyan-400/30 pb-2 px-2">
@@ -387,6 +419,6 @@ export function ArcadeMiniGame() {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }

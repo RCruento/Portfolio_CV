@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Shield, Trophy, Zap } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 
@@ -10,14 +9,24 @@ export function GameHUDOverlay() {
   const { t } = useLanguage();
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight <= 0) return;
-      const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
-      setScrollHp(Math.round(progress));
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0) {
+            const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+            const rounded = Math.round(progress);
+            setScrollHp((prev) => (prev !== rounded ? rounded : prev));
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -30,10 +39,9 @@ export function GameHUDOverlay() {
         </div>
 
         <div className="w-32 sm:w-48 h-2.5 rounded-full bg-black border border-rose-500/50 overflow-hidden">
-          <motion.div
-            animate={{ width: `${Math.max(15, scrollHp)}%` }}
-            transition={{ ease: "easeOut" }}
-            className="h-full bg-gradient-to-r from-rose-500 via-yellow-400 to-emerald-400"
+          <div
+            style={{ width: `${Math.max(15, scrollHp)}%` }}
+            className="h-full bg-gradient-to-r from-rose-500 via-yellow-400 to-emerald-400 transition-all duration-150 ease-out"
           />
         </div>
         <span className="text-[11px] text-cyan-400 font-extrabold">{scrollHp}%</span>

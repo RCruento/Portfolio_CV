@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FaReact, FaNodeJs, FaHtml5, FaPhp, FaJava, FaGit, FaDocker, FaPython } from "react-icons/fa";
 import {
   SiMysql,
@@ -115,71 +114,61 @@ export function TechStackSection() {
       </div>
 
       {/* Realistic Skill Grid */}
-      <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <AnimatePresence mode="popLayout">
-          {filteredSkills.map((skill) => {
-            const badgeLabel = t.skills.badges[skill.badge];
-            const levelLabel = getLevelLabel(skill.levelPercent, skill.badge);
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredSkills.map((skill) => {
+          const badgeLabel = t.skills.badges[skill.badge];
+          const levelLabel = getLevelLabel(skill.levelPercent, skill.badge);
 
-            return (
-              <motion.div
-                key={skill.name}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="hud-card p-4 flex flex-col gap-3 justify-between"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl shrink-0" aria-hidden="true">
-                      {skill.icon}
-                    </div>
-                    <span className="font-display font-extrabold text-sm text-white">
-                      {skill.name}
-                    </span>
+          return (
+            <div
+              key={skill.name}
+              className="hud-card p-4 flex flex-col gap-3 justify-between transition-all duration-200"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  <div className="text-2xl shrink-0" aria-hidden="true">
+                    {skill.icon}
                   </div>
-                  <span
-                    className={`hud-badge text-[9px] ${
-                      skill.badge === "solid"
-                        ? "text-emerald-400 border-emerald-400/50 bg-emerald-400/10"
-                        : skill.badge === "practiced"
-                        ? "text-cyan-400 border-cyan-400/50 bg-cyan-400/10"
-                        : "text-amber-400 border-amber-400/50 bg-amber-400/10"
-                    }`}
-                  >
-                    {badgeLabel}
+                  <span className="font-display font-extrabold text-sm text-white">
+                    {skill.name}
                   </span>
                 </div>
+                <span
+                  className={`hud-badge text-[9px] ${
+                    skill.badge === "solid"
+                      ? "text-emerald-400 border-emerald-400/50 bg-emerald-400/10"
+                      : skill.badge === "practiced"
+                      ? "text-cyan-400 border-cyan-400/50 bg-cyan-400/10"
+                      : "text-amber-400 border-amber-400/50 bg-amber-400/10"
+                  }`}
+                >
+                  {badgeLabel}
+                </span>
+              </div>
 
-                {/* Level Progress Bar */}
-                <div className="space-y-1">
-                  <div className="flex justify-between font-mono-label text-[10px] font-bold text-muted-foreground">
-                    <span>{levelLabel}</span>
-                    <span className="text-cyan-400">{skill.levelPercent}%</span>
-                  </div>
-                  <div className="w-full h-2 rounded-full bg-black/70 border border-cyan-500/30 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.levelPercent}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.7 }}
-                      className={`h-full ${
-                        skill.badge === "solid"
-                          ? "bg-gradient-to-r from-cyan-400 to-emerald-400"
-                          : skill.badge === "practiced"
-                          ? "bg-gradient-to-r from-cyan-400 to-purple-500"
-                          : "bg-gradient-to-r from-amber-400 to-rose-500"
-                      }`}
-                    />
-                  </div>
+              {/* Level Progress Bar */}
+              <div className="space-y-1">
+                <div className="flex justify-between font-mono-label text-[10px] font-bold text-muted-foreground">
+                  <span>{levelLabel}</span>
+                  <span className="text-cyan-400">{skill.levelPercent}%</span>
                 </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </motion.div>
+                <div className="w-full h-2 rounded-full bg-black/70 border border-cyan-500/30 overflow-hidden">
+                  <div
+                    style={{ width: `${skill.levelPercent}%` }}
+                    className={`h-full transition-all duration-500 ease-out ${
+                      skill.badge === "solid"
+                        ? "bg-gradient-to-r from-cyan-400 to-emerald-400"
+                        : skill.badge === "practiced"
+                        ? "bg-gradient-to-r from-cyan-400 to-purple-500"
+                        : "bg-gradient-to-r from-amber-400 to-rose-500"
+                    }`}
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
