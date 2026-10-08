@@ -2,8 +2,11 @@
 
 import { ArrowUp, Github, Linkedin, Mail, Heart, Gamepad2 } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "./LanguageProvider";
 
 export function AppFooter() {
+  const { t, locale } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -13,21 +16,23 @@ export function AppFooter() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col gap-1 text-center md:text-left">
           <Link
-            href="/"
+            href={`/${locale}`}
             className="font-display font-black text-2xl tracking-tight text-foreground uppercase flex items-center justify-center md:justify-start gap-2"
           >
             <Gamepad2 size={22} className="text-rose-600" />
-            <span>RAYAN <span className="text-rose-600 font-black">KOUSSA</span></span>
+            <span>
+              RAYAN <span className="text-rose-600 font-black">KOUSSA</span>
+            </span>
           </Link>
           <p className="font-mono-label text-xs font-bold text-muted-foreground uppercase">
-            DÉVELOPPEUR FULL-STACK • MASTER 2 HYPERMEDIA (PARIS 8)
+            {t.footer.tagline}
           </p>
         </div>
 
-        {/* Socials */}
+        {/* Socials & Actions */}
         <div className="flex items-center gap-3">
           <a
-            href="https://linkedin.com/in/rayan-koussa-8b9a84183"
+            href="https://www.linkedin.com/in/rayan-koussa/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -55,7 +60,8 @@ export function AppFooter() {
           {/* Back to top button */}
           <button
             onClick={scrollToTop}
-            aria-label="Retour en haut"
+            aria-label={t.footer.backToTop}
+            title={t.footer.backToTop}
             className="arcade-btn-red p-3 rounded-xl cursor-pointer ml-2"
           >
             <ArrowUp size={18} />
@@ -64,9 +70,12 @@ export function AppFooter() {
       </div>
 
       <div className="max-w-6xl mx-auto mt-8 pt-6 border-t-2 border-border-arcade/20 flex flex-col sm:flex-row items-center justify-between text-xs font-mono-label font-bold text-muted-foreground gap-2 uppercase">
-        <span>© {new Date().getFullYear()} RAYAN KOUSSA. TOUS DROITS RÉSERVÉS.</span>
+        <span>
+          © {new Date().getFullYear()} RAYAN KOUSSA. {t.footer.rights}
+        </span>
         <span className="flex items-center gap-1">
-          CONÇU AVEC <Heart size={12} className="text-rose-600 fill-rose-600" /> EN NEXT.JS 16 & THREE.JS
+          {t.footer.builtWith}{" "}
+          <Heart size={12} className="text-rose-600 fill-rose-600" /> {t.footer.builtWithTech}
         </span>
       </div>
     </footer>

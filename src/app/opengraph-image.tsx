@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Rayan Koussa – Développeur Full-Stack Junior";
+export const alt = "Rayan Koussa – Full-Stack Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -62,7 +62,7 @@ export default function Image() {
             textTransform: "uppercase",
           }}
         >
-          Développeur Full-Stack Junior
+          Full-Stack Software Engineer
         </div>
 
         {/* Stack pills */}

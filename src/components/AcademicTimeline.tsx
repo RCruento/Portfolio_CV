@@ -1,64 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Award, BookOpen, Building2 } from "lucide-react";
-
-interface AcademicItem {
-  degree: string;
-  institution: string;
-  location: string;
-  period: string;
-  badge: string;
-  description: string;
-  highlights: string[];
-}
-
-const ACADEMIC_GUILD: AcademicItem[] = [
-  {
-    degree: "Master 2 Technologies de l'Hypermédia",
-    institution: "Université Paris 8 (IDEFI CréaTIC)",
-    location: "Saint-Denis / Paris",
-    period: "2023 – 2025",
-    badge: "DIPLÔME NIVEAU 7",
-    description: "Formation supérieure d'excellence axée sur le développement web avancé, les architectures d'applications interactives, l'ingénierie logicielle et le design d'expérience utilisateur (UX/UI).",
-    highlights: [
-      "Architectures Frontend (React, Next.js) & Backend (Node.js, Express, NestJS)",
-      "Gestion de projets numériques complexes & méthodologies agiles",
-      "Technologies hypermédias, WebGL & applications web réactives",
-    ],
-  },
-  {
-    degree: "Master 1 Management de Projets Informatiques",
-    institution: "École IRIS",
-    location: "Paris",
-    period: "2020 – 2021",
-    badge: "MANAGEMENT IT",
-    description: "Spécialisation en gestion et conduite de projets systèmes d'information, gouvernance IT et méthodologies de travail collaboratif.",
-    highlights: [
-      "Conduite de projets agiles (Scrum, Kanban, Sprint planning)",
-      "Analyse des besoins métiers & rédaction de cahiers des charges",
-      "Gouvernance SI, sécurité & anglais professionnel",
-    ],
-  },
-  {
-    degree: "Licence Informatique Généraliste",
-    institution: "Université de Lorraine",
-    location: "Metz",
-    period: "2015 – 2020",
-    badge: "FONDATIONS IT",
-    description: "Solide socle scientifique et technique couvrant les fondements de la science informatique, la programmation orientée objet et l'algorithmie.",
-    highlights: [
-      "Programmation impérative & orientée objet (Java, C, C++)",
-      "Bases de données relationnelles (SQL, modélisation conceptuelle)",
-      "Algorithmique avancée, structures de données & systèmes d'exploitation",
-    ],
-  },
-];
+import { GraduationCap, Building2 } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
 export function AcademicTimeline() {
+  const { t } = useLanguage();
+  const guild = t.quests.academicGuild;
+
   return (
     <div className="relative flex flex-col gap-6 pl-4 sm:pl-6 border-l-2 border-cyan-400/40">
-      {ACADEMIC_GUILD.map((item, index) => (
+      {guild.map((item, index) => (
         <motion.div
           key={item.degree}
           initial={{ opacity: 0, x: -20 }}

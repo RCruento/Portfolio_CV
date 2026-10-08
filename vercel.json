@@ -10,7 +10,13 @@
       ]
     },
     {
-      "source": "/CV_Rayan_K.pdf",
+      "source": "/CV_Rayan_KOUSSA.pdf",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/CV_Rayan_KOUSSA_EN.pdf",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]

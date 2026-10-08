@@ -53,6 +53,6 @@ Ouvrez ensuite [http://localhost:3000](http://localhost:3000) dans votre navigat
 
 ## 📬 Contact & Réseaux
 
-- **LinkedIn** : [Rayan Koussa](https://linkedin.com/in/rayan-koussa-8b9a84183)
+- **LinkedIn** : [Rayan Koussa](https://www.linkedin.com/in/rayan-koussa/)
 - **GitHub** : [RCruento](https://github.com/RCruento)
 - **Localisation** : Cergy, 95000 — Île-de-France

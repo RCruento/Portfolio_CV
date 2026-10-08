@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Lock, Eye, Play } from "lucide-react";
+import { Lock, Play } from "lucide-react";
 import { ProjectShowcaseModal } from "@/components/ProjectShowcaseModal";
+import { useLanguage } from "./LanguageProvider";
 
 export type ProjectSize = "large" | "medium" | "small";
 
@@ -23,6 +24,7 @@ export interface Project {
 
 export function ProjectCard({ project }: { project: Project }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <>
@@ -44,12 +46,12 @@ export function ProjectCard({ project }: { project: Project }) {
             />
             <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-mono-label text-xs font-black uppercase tracking-widest gap-2 bg-rose-600/90">
               <Play size={18} className="fill-white" />
-              VOIR LE PROJET
+              {t.projectsPage.viewProject}
             </div>
           </div>
         ) : (
           <div className="w-full h-28 bg-gradient-to-br from-rose-600 to-blue-600 border-b-2 border-border-arcade flex items-center justify-between px-6 text-white font-mono-label font-black text-sm uppercase tracking-widest">
-            <span>{project.category || "PROJET ARCADE"}</span>
+            <span>{project.category || t.projectsPage.detailsTitle}</span>
             <Play size={20} className="fill-white" />
           </div>
         )}
@@ -64,7 +66,7 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.private && (
               <span className="arcade-badge bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border-amber-500 flex items-center gap-1">
                 <Lock size={10} />
-                CONFIDENTIEL
+                {t.projectsPage.confidential}
               </span>
             )}
           </div>

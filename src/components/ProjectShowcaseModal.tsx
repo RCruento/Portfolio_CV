@@ -5,6 +5,7 @@ import Image from "next/image";
 import { X, ExternalLink, Github, Lock, Sparkles, CheckCircle2 } from "lucide-react";
 import type { Project } from "@/components/ProjectCard";
 import { fireConfetti } from "@/lib/confetti";
+import { useLanguage } from "./LanguageProvider";
 
 export function ProjectShowcaseModal({
   project,
@@ -13,6 +14,8 @@ export function ProjectShowcaseModal({
   project: Project | null;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
+
   if (!project) return null;
 
   const handleDemoClick = () => {
@@ -34,12 +37,13 @@ export function ProjectShowcaseModal({
             <div className="flex items-center gap-2">
               <Sparkles size={18} className="text-rose-600" />
               <span className="font-mono-label text-xs font-extrabold uppercase tracking-wider text-foreground">
-                {project.category || "DÉTAILS DU PROJET"}
+                {project.category || t.projectsPage.detailsTitle}
               </span>
             </div>
             <button
               onClick={onClose}
               className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-rose-600 hover:text-white border-2 border-border-arcade transition-all cursor-pointer text-foreground"
+              aria-label="Close modal"
             >
               <X size={18} />
             </button>
@@ -71,28 +75,22 @@ export function ProjectShowcaseModal({
             {/* Features / Highlights */}
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border-2 border-border-arcade/30 space-y-2">
               <span className="font-mono-label text-xs font-extrabold uppercase tracking-wider block text-foreground">
-                POINTS FORTS & CARACTÉRISTIQUES
+                {t.projectsPage.highlightsTitle}
               </span>
               <ul className="space-y-1.5 text-xs text-muted-foreground font-mono-label">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
-                  Conception responsive et optimisée pour la vitesse de chargement.
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
-                  Code modulaire, typage strict TypeScript et architecture propre.
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
-                  Intégration d&apos;APIs REST et gestion d&apos;états sécurisée.
-                </li>
+                {t.projectsPage.highlights.map((highlight, idx) => (
+                  <li key={idx} className="flex items-center gap-2">
+                    <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
+                    {highlight}
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Tech Stack */}
             <div className="space-y-2">
               <span className="font-mono-label text-xs font-extrabold uppercase text-foreground">
-                TECHNOLOGIES UTILISÉES
+                {t.projectsPage.techUsed}
               </span>
               <div className="flex flex-wrap gap-2">
                 {project.stacks.map((s) => (
@@ -109,7 +107,7 @@ export function ProjectShowcaseModal({
             {project.private ? (
               <span className="inline-flex items-center gap-1.5 font-mono-label text-xs font-extrabold text-amber-600 dark:text-amber-400">
                 <Lock size={14} />
-                CONFIDENTIEL (Détails complémentaires sur demande)
+                {t.projectsPage.confidentialNotice}
               </span>
             ) : (
               <div className="flex items-center gap-3">
@@ -122,7 +120,7 @@ export function ProjectShowcaseModal({
                     className="arcade-btn-blue inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs"
                   >
                     <Github size={15} />
-                    CODE SOURCE
+                    {t.projectsPage.sourceCode}
                   </a>
                 )}
                 {project.link && (
@@ -134,7 +132,7 @@ export function ProjectShowcaseModal({
                     className="arcade-btn-red inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs"
                   >
                     <ExternalLink size={15} />
-                    LANCER LA DÉMO
+                    {t.projectsPage.liveDemo}
                   </a>
                 )}
               </div>

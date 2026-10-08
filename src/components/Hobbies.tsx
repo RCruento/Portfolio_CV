@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Camera, Gamepad2, Music, Palette, UtensilsCrossed, ExternalLink, Instagram } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
 interface GameItem {
   name: string;
@@ -36,23 +37,24 @@ const GAMES: GameItem[] = [
   },
 ];
 
-const CREATIVE_PASSIONS = [
-  { name: "Guitare", desc: "Acoustique & Électrique", icon: Music, color: "from-amber-500 to-rose-500" },
-  { name: "Dessin", desc: "Digital Art & Sketching", icon: Palette, color: "from-purple-500 to-indigo-500" },
-  { name: "Cuisine", desc: "Gastronomie & Patisserie", icon: UtensilsCrossed, color: "from-emerald-500 to-teal-500" },
-];
-
 export default function Hobbies() {
   const [showInsta, setShowInsta] = useState(true);
+  const { t } = useLanguage();
+
+  const creativePassions = [
+    { name: t.hobbies.passions[0].name, desc: t.hobbies.passions[0].desc, icon: Music, color: "from-amber-500 to-rose-500" },
+    { name: t.hobbies.passions[1].name, desc: t.hobbies.passions[1].desc, icon: Palette, color: "from-purple-500 to-indigo-500" },
+    { name: t.hobbies.passions[2].name, desc: t.hobbies.passions[2].desc, icon: UtensilsCrossed, color: "from-emerald-500 to-teal-500" },
+  ];
 
   return (
     <div className="w-full max-w-5xl mx-auto flex flex-col gap-10">
       <div className="text-center flex flex-col items-center gap-2">
         <span className="font-mono-label text-xs tracking-widest text-rose-500 uppercase font-semibold">
-          Passions & Inspiration
+          {t.hobbies.badge}
         </span>
         <h2 className="font-display font-bold text-2xl sm:text-3xl text-foreground">
-          Loisirs & Centres d&apos;intérêt
+          {t.hobbies.title}
         </h2>
       </div>
 
@@ -71,17 +73,17 @@ export default function Hobbies() {
                 <Camera size={20} />
               </div>
               <div>
-                <h3 className="font-display font-bold text-lg text-foreground">Photographie</h3>
-                <p className="font-mono-label text-xs text-muted-foreground">Capture visuelle & argentique</p>
+                <h3 className="font-display font-bold text-lg text-foreground">{t.hobbies.photography.title}</h3>
+                <p className="font-mono-label text-xs text-muted-foreground">{t.hobbies.photography.desc}</p>
               </div>
             </div>
 
             <button
               onClick={() => setShowInsta(!showInsta)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono-label bg-rose-500/10 text-rose-500 font-semibold border border-rose-500/20 hover:bg-rose-500 hover:text-white transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono-label bg-rose-500/10 text-rose-500 font-semibold border border-rose-500/20 hover:bg-rose-500 hover:text-white transition-all cursor-pointer"
             >
               <Instagram size={13} />
-              {showInsta ? "Masquer" : "Afficher"} Feed
+              {showInsta ? t.hobbies.photography.hideFeed : t.hobbies.photography.showFeed}
             </button>
           </div>
 
@@ -116,8 +118,8 @@ export default function Hobbies() {
               <Gamepad2 size={20} />
             </div>
             <div>
-              <h3 className="font-display font-bold text-lg text-foreground">Jeux Vidéo</h3>
-              <p className="font-mono-label text-xs text-muted-foreground">Compétition & eSport</p>
+              <h3 className="font-display font-bold text-lg text-foreground">{t.hobbies.gaming.title}</h3>
+              <p className="font-mono-label text-xs text-muted-foreground">{t.hobbies.gaming.desc}</p>
             </div>
           </div>
 
@@ -162,7 +164,7 @@ export default function Hobbies() {
 
         {/* Creative Passions Cards */}
         <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {CREATIVE_PASSIONS.map((item, i) => {
+          {creativePassions.map((item, i) => {
             const IconComp = item.icon;
             return (
               <motion.div

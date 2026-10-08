@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Play, RotateCcw, Shield, Trophy, Zap, Award } from "lucide-react";
 import { fireConfetti } from "@/lib/confetti";
+import { useLanguage } from "./LanguageProvider";
 
 interface Invader {
   x: number;
@@ -96,7 +97,7 @@ export function ArcadeMiniGame() {
 
     initInvaders();
 
-    let bunkers: Bunker[] = [
+    const bunkers: Bunker[] = [
       { x: 120, y: canvas.height - 90, width: 70, height: 16, hp: 15 },
       { x: canvas.width / 2 - 35, y: canvas.height - 90, width: 70, height: 16, hp: 15 },
       { x: canvas.width - 190, y: canvas.height - 90, width: 70, height: 16, hp: 15 },
@@ -296,6 +297,7 @@ export function ArcadeMiniGame() {
     };
   }, []);
 
+  const { t } = useLanguage();
   const isPlaying = gameState === "PLAYING";
 
   return (
@@ -312,23 +314,23 @@ export function ArcadeMiniGame() {
         <div className="flex items-center gap-4">
           <span className="text-amber-400 flex items-center gap-1">
             <Trophy size={16} />
-            SCORE: {score.toString().padStart(6, "0")}
+            {t.arcade.score}: {score.toString().padStart(6, "0")}
           </span>
           <span className="text-cyan-400 font-extrabold flex items-center gap-1">
             <Award size={16} />
-            WAVE {wave}
+            {t.arcade.wave} {wave}
           </span>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-rose-500 font-black tracking-widest hidden sm:inline">
-            SPACE INVADERS ARENA
+            {t.arcade.gameName}
           </span>
         </div>
 
         <div className="flex items-center gap-3">
           <Shield size={16} className="text-emerald-400" />
-          <span className="text-emerald-400">SHIELD: {shield}%</span>
+          <span className="text-emerald-400">{t.arcade.shield}: {shield}%</span>
         </div>
       </div>
 
@@ -349,10 +351,10 @@ export function ArcadeMiniGame() {
             </div>
             <div className="flex flex-col gap-1">
               <h3 className="font-display font-black text-2xl text-white uppercase">
-                SPACE INVADERS ARENA
+                {t.arcade.gameName}
               </h3>
               <p className="font-mono-label text-xs text-muted-foreground max-w-md">
-                La souris guide directement le canon • Tir automatique • Vitesse progressive à chaque vague !
+                {t.arcade.instructions}
               </p>
             </div>
             <button
@@ -360,7 +362,7 @@ export function ArcadeMiniGame() {
               className="hud-btn-primary px-8 py-4 rounded-xl text-sm flex items-center gap-2 cursor-pointer shadow-lg shadow-rose-500/50"
             >
               <Play size={18} className="fill-white" />
-              LANCER LA PARTIE (START GAME)
+              {t.arcade.startGame}
             </button>
           </div>
         )}
@@ -369,18 +371,18 @@ export function ArcadeMiniGame() {
         {gameState === "GAMEOVER" && (
           <div className="absolute inset-0 z-20 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center gap-4">
             <h3 className="font-display font-black text-3xl text-rose-500 uppercase tracking-widest">
-              GAME OVER
+              {t.arcade.gameOver}
             </h3>
             <div className="font-mono-label text-sm space-y-1 text-white">
-              <p>SCORE FINAL : <span className="text-amber-400 font-bold">{score}</span></p>
-              <p>VAGUES ATTEINTES : <span className="text-cyan-400 font-bold">WAVE {wave}</span></p>
+              <p>{t.arcade.finalScore} : <span className="text-amber-400 font-bold">{score}</span></p>
+              <p>{t.arcade.wavesReached} : <span className="text-cyan-400 font-bold">{t.arcade.wave} {wave}</span></p>
             </div>
             <button
               onClick={handleStartGame}
               className="hud-btn-cyan px-8 py-4 rounded-xl text-xs flex items-center gap-2 cursor-pointer"
             >
               <RotateCcw size={16} />
-              REJOUER (RETRY)
+              {t.arcade.retry}
             </button>
           </div>
         )}

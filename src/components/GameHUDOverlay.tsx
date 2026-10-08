@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, Trophy, Zap } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
 export function GameHUDOverlay() {
   const [scrollHp, setScrollHp] = useState(100);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +26,7 @@ export function GameHUDOverlay() {
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-1.5 text-rose-500">
           <Shield size={14} className="animate-pulse" />
-          <span>PLAYER HP</span>
+          <span>{t.hud.playerHp}</span>
         </div>
 
         <div className="w-32 sm:w-48 h-2.5 rounded-full bg-black border border-rose-500/50 overflow-hidden">
@@ -40,11 +42,11 @@ export function GameHUDOverlay() {
       <div className="flex items-center gap-6">
         <span className="text-amber-400 hidden sm:flex items-center gap-1">
           <Trophy size={14} />
-          LEVEL 99 MASTER 2
+          {t.hud.level}
         </span>
         <span className="text-emerald-400 flex items-center gap-1">
           <Zap size={14} className="animate-bounce" />
-          STATUS: READY
+          {t.hud.status}
         </span>
       </div>
     </div>
