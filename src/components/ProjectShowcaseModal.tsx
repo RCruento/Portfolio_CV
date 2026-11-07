@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X, ExternalLink, Github, Lock, Sparkles, CheckCircle2 } from "lucide-react";
+import { X, ExternalLink, Github, Lock, Sparkles, CheckCircle2, Play, ShoppingBag } from "lucide-react";
 import type { Project } from "@/components/ProjectCard";
+import { TechIcon } from "@/components/TechIcon";
 import { fireConfetti } from "@/lib/confetti";
 import { useLanguage } from "./LanguageProvider";
 
@@ -15,8 +17,11 @@ export function ProjectShowcaseModal({
   onClose: () => void;
 }) {
   const { t } = useLanguage();
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
 
   if (!project) return null;
+
+  const currentMedia = selectedMedia || (project.video ? "video" : project.image);
 
   const handleDemoClick = () => {
     fireConfetti();
@@ -51,17 +56,79 @@ export function ProjectShowcaseModal({
 
           {/* Modal Body */}
           <div className="p-6 overflow-y-auto space-y-6 flex-1 bg-surface">
-            {/* Image Preview */}
-            {project.image && (
-              <div className="relative w-full h-56 sm:h-72 rounded-xl overflow-hidden border-2 border-border-arcade">
-                <Image
-                  src={project.image}
-                  alt={project.altText || project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
+            {/* Media Player / Image Preview */}
+            <div className="space-y-3">
+              {currentMedia === "video" && project.video ? (
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-border-arcade bg-black shadow-lg">
+                  <video
+                    src={project.video}
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : currentMedia ? (
+                <div className="relative w-full h-56 sm:h-80 rounded-xl overflow-hidden border-2 border-border-arcade bg-slate-900 shadow-lg">
+                  <Image
+                    src={currentMedia}
+                    alt={project.altText || project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+
+              {/* Thumbnails Gallery */}
+              {(project.video || (project.gallery && project.gallery.length > 0)) && (
+                <div className="flex items-center gap-2.5 overflow-x-auto pb-1 pt-0.5">
+                  {project.video && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedMedia("video")}
+                      className={`relative px-3 py-1.5 rounded-lg text-xs font-mono-label font-bold flex items-center gap-1.5 border transition cursor-pointer ${
+                        currentMedia === "video"
+                          ? "bg-rose-600 text-white border-rose-500 shadow-sm"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-border-arcade/40 hover:border-rose-500/50"
+                      }`}
+                    >
+                      <Play size={12} className="fill-current" />
+                      <span>DÉMO 30s (VIDÉO)</span>
+                    </button>
+                  )}
+
+                  {project.image && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedMedia(project.image!)}
+                      className={`relative px-3 py-1.5 rounded-lg text-xs font-mono-label font-bold border transition cursor-pointer ${
+                        currentMedia === project.image
+                          ? "bg-rose-600 text-white border-rose-500 shadow-sm"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-border-arcade/40 hover:border-rose-500/50"
+                      }`}
+                    >
+                      <span>VUE PRINCIPALE</span>
+                    </button>
+                  )}
+
+                  {project.gallery?.map((imgUrl, i) => (
+                    <button
+                      key={imgUrl}
+                      type="button"
+                      onClick={() => setSelectedMedia(imgUrl)}
+                      className={`relative px-3 py-1.5 rounded-lg text-xs font-mono-label font-bold border transition cursor-pointer ${
+                        currentMedia === imgUrl
+                          ? "bg-rose-600 text-white border-rose-500 shadow-sm"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-border-arcade/40 hover:border-rose-500/50"
+                      }`}
+                    >
+                      <span>CAPTURE #{i + 1}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <div className="flex flex-col gap-2">
               <h3 className="font-display font-extrabold text-2xl text-foreground">
@@ -94,8 +161,12 @@ export function ProjectShowcaseModal({
               </span>
               <div className="flex flex-wrap gap-2">
                 {project.stacks.map((s) => (
-                  <span key={s} className="arcade-badge text-xs">
-                    {s}
+                  <span
+                    key={s}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono-label font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-rose-500/50 transition-colors shadow-xs"
+                  >
+                    <TechIcon name={s} />
+                    <span>{s}</span>
                   </span>
                 ))}
               </div>

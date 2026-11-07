@@ -276,6 +276,12 @@ export const en = {
     liveDemo: "LAUNCH DEMO",
     items: [
       {
+        title: "Career Finder Helper AI",
+        category: "FULL-STACK WEB",
+        description:
+          "All-in-one local-first desktop OS for job aggregation and candidate decision support. Multi-source ETL pipeline across 11 job portals, ATS compatibility scoring, tailored application generator, and AI STAR interview coach (BYOK).",
+      },
+      {
         title: "MBTI Explorer",
         category: "FULL-STACK WEB",
         description:

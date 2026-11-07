@@ -8,6 +8,8 @@ import { useLanguage } from "@/components/LanguageProvider";
 
 interface ProjectBaseData {
   image?: string;
+  video?: string;
+  gallery?: string[];
   stacks: string[];
   github?: string;
   link?: string;
@@ -16,13 +18,27 @@ interface ProjectBaseData {
 }
 
 const PROJECT_BASE_CONFIGS: ProjectBaseData[] = [
-  // 1. MBTI Explorer
+  // 1. Career Finder Helper AI
   {
     size: "large",
+    image: "/projects/career-finder-helper/cover.png",
+    video: "/projects/career-finder-helper/demo_30s.webm",
+    gallery: [
+      "/projects/career-finder-helper/kanban.png",
+      "/projects/career-finder-helper/explorer.png",
+      "/projects/career-finder-helper/modal.png",
+    ],
+    stacks: ["Python", "FastAPI", "React 19", "TypeScript", "SQLite (Local-First)", "Chrome Extension", "BYOK AI"],
+    link: "https://rcruento.lemonsqueezy.com",
+    private: true,
+  },
+  // 2. MBTI Explorer
+  {
+    size: "medium",
     image: "https://mmj.azureedge.net/media/90903e37-919a-48a5-a93c-e39fe08b4386.webp",
     stacks: ["ReactJS", "Node.js", "Express", "MySQL", "REST API"],
   },
-  // 2. KuCoinBot v10
+  // 3. KuCoinBot v10
   {
     size: "medium",
     private: true,

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Lock, Play } from "lucide-react";
 import { ProjectShowcaseModal } from "@/components/ProjectShowcaseModal";
+import { TechIcon } from "@/components/TechIcon";
 import { useLanguage } from "./LanguageProvider";
 
 export type ProjectSize = "large" | "medium" | "small";
@@ -12,6 +13,8 @@ export type ProjectSize = "large" | "medium" | "small";
 export interface Project {
   title: string;
   image?: string;
+  video?: string;
+  gallery?: string[];
   altText?: string;
   description: string;
   stacks: string[];
@@ -81,8 +84,12 @@ export function ProjectCard({ project }: { project: Project }) {
 
           <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t-2 border-border-arcade/20">
             {project.stacks.map((stack) => (
-              <span key={stack} className="arcade-badge text-[10px]">
-                {stack}
+              <span
+                key={stack}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono-label font-semibold bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 hover:border-rose-500/50 hover:text-rose-600 dark:hover:text-rose-400 transition-colors shadow-xs"
+              >
+                <TechIcon name={stack} />
+                <span>{stack}</span>
               </span>
             ))}
           </div>

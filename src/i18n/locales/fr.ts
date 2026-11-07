@@ -275,6 +275,12 @@ export const fr = {
     liveDemo: "LANCER LA DÉMO",
     items: [
       {
+        title: "Career Finder Helper AI",
+        category: "FULL-STACK WEB",
+        description:
+          "OS Desktop Local-First d'ingestion de données et matching d'emploi. Pipeline ETL temps réel sur 11 plateformes, scoring ATS vectoriel, tailoring documentaire et simulateur d'entretien STAR avec chiffrement local AES-256 (BYOK).",
+      },
+      {
         title: "MBTI Explorer",
         category: "FULL-STACK WEB",
         description:
