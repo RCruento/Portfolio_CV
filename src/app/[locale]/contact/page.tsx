@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { routing, type Locale } from "@/i18n/routing";
 import { getDictionary } from "@/i18n/dictionary";
 import { ContactView } from "@/components/ContactView";
+import Script from "next/script";
 
 export async function generateMetadata({
   params,
@@ -30,9 +31,45 @@ export async function generateMetadata({
       description: dict.meta.contactDescription,
       url: `https://rayankoussa.vercel.app/${locale}/contact`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${dict.meta.contactTitle} | Rayan Koussa`,
+      description: dict.meta.contactDescription,
+    },
   };
 }
 
-export default function ContactPage() {
-  return <ContactView />;
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: rawLocale } = await params;
+  const locale = (routing.locales.includes(rawLocale as Locale)
+    ? rawLocale
+    : routing.defaultLocale) as Locale;
+
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Rayan Koussa",
+    url: `https://rayankoussa.vercel.app/${locale}/contact`,
+    mainEntity: {
+      "@type": "Person",
+      name: "Rayan Koussa",
+      email: "mailto:rayan.koussa@outlook.fr",
+      url: "https://rayankoussa.vercel.app",
+    },
+  };
+
+  return (
+    <>
+      <Script
+        id="contact-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+      />
+      <ContactView />
+    </>
+  );
 }

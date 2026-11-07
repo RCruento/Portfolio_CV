@@ -87,6 +87,14 @@ export async function generateMetadata({
       alternateLocale: locale === "fr" ? ["en_US"] : ["fr_FR"],
       type: "website",
     },
+    alternates: {
+      canonical: `https://rayankoussa.vercel.app/${locale}`,
+      languages: {
+        en: "https://rayankoussa.vercel.app/en",
+        fr: "https://rayankoussa.vercel.app/fr",
+        "x-default": "https://rayankoussa.vercel.app/en",
+      },
+    },
     twitter: {
       card: "summary_large_image",
       title: dict.meta.title,
@@ -186,16 +194,24 @@ export default async function LocalizedLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="manifest" href="/manifest.json" />
 
+      </head>
+      <body
+        className={`${geistSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col relative`}
+      >
         {/* Flash prevention */}
-        <script
+        <Script
+          id="theme-flash-prevention"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.toggle("dark",t==="dark"||(!t&&true));}catch(e){}})();`,
           }}
         />
 
         {/* Structured Data JSON-LD */}
-        <script
+        <Script
+          id="global-jsonld"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLdData),
           }}
@@ -208,10 +224,6 @@ export default async function LocalizedLayout({
           src="https://plausible.io/js/script.js"
           strategy="lazyOnload"
         />
-      </head>
-      <body
-        className={`${geistSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col relative`}
-      >
         <LanguageProvider initialLocale={locale}>
           <AppThemeProvider>
             {/* Ambient 3D WebGL Background */}

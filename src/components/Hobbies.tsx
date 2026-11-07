@@ -157,8 +157,7 @@ export default function Hobbies() {
                     alt={game.name}
                     width={36}
                     height={36}
-                    style={{ width: "auto", height: "auto" }}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    className="w-auto h-auto max-w-[36px] max-h-[36px] object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex flex-col min-w-0 flex-1">

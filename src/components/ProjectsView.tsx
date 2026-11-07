@@ -120,6 +120,8 @@ export function ProjectsView() {
       description: item.description,
       size: config.size,
       image: config.image,
+      video: config.video,
+      gallery: config.gallery,
       stacks: config.stacks,
       github: config.github,
       link: config.link,
@@ -144,25 +146,25 @@ export function ProjectsView() {
   return (
     <section className="w-full max-w-6xl mx-auto px-4 py-12 mb-20 flex flex-col gap-10 pt-16">
       {/* Header Title */}
-      <div className="flex flex-col items-center text-center gap-3 border-b-2 border-border-arcade pb-6">
-        <span className="arcade-badge">
+      <div className="flex flex-col items-center text-center gap-3 border-b border-cyan-400/40 pb-6">
+        <span className="hud-badge text-cyan-400 border-cyan-400/50 bg-cyan-400/10">
           {t.projectsPage.badge} ({projects.length} {t.projectsPage.totalProjectsSuffix})
         </span>
-        <h1 className="font-display font-black text-4xl sm:text-6xl text-foreground uppercase tracking-tight">
+        <h1 className="font-display font-black text-4xl sm:text-6xl text-white uppercase tracking-tight">
           {t.projectsPage.title}
         </h1>
       </div>
 
       {/* Category Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 p-2 brutal-card max-w-3xl mx-auto">
+      <div className="flex flex-wrap items-center justify-center gap-2 p-2 hud-card max-w-3xl mx-auto">
         {categories.map((cat, idx) => (
           <button
             key={cat}
             onClick={() => setActiveCategoryIndex(idx)}
-            className={`px-4 py-2 text-xs font-mono-label font-bold uppercase rounded-xl transition-all cursor-pointer border-2 ${
+            className={`px-4 py-2 text-xs font-mono-label font-bold uppercase rounded-xl transition-all cursor-pointer border ${
               activeCategoryIndex === idx
-                ? "bg-rose-600 text-white border-black shadow-[3px_3px_0px_0px_#000]"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "hud-btn-primary shadow-lg shadow-rose-500/40"
+                : "border-transparent text-slate-400 hover:text-white hover:bg-slate-800/60"
             }`}
           >
             {cat}

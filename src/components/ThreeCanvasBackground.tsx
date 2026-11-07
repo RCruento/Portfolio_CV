@@ -14,6 +14,7 @@ export function ThreeCanvasBackground() {
 
     const init = async () => {
       if (isDisposed || !container) return;
+      if (window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       // Dynamically load Three.js on idle to keep initial bundle ultra-light
       const THREE = await import("three");

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/_next/", "/.well-known/"],
+        disallow: ["/_next/"],
       },
       {
         userAgent: "Googlebot",
@@ -15,7 +15,6 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Bingbot",
         allow: "/",
-        crawlDelay: 1,
       },
     ],
     sitemap: "https://rayankoussa.vercel.app/sitemap.xml",

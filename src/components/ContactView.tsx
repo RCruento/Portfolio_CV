@@ -42,6 +42,16 @@ export function ContactView() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email || !formData.message) return;
+    
+    // Construct pre-filled email to open user's mail client directly
+    const subject = encodeURIComponent(
+      `[Contact Portfolio] Message de ${formData.name || formData.email}`
+    );
+    const body = encodeURIComponent(
+      `Nom: ${formData.name || "Non renseigné"}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:rayan.koussa@outlook.fr?subject=${subject}&body=${body}`;
+
     fireConfetti();
     setFormSubmitted(true);
     setTimeout(() => {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,23 +22,50 @@ import {
 import { CountryFlag } from "@/components/CountryFlag";
 import { AcademicTimeline } from "@/components/AcademicTimeline";
 import { TechStackSection } from "@/components/TechStackSection";
-import { CustomCursor } from "@/components/CustomCursor";
 import { GameHUDOverlay } from "@/components/GameHUDOverlay";
+import { ArcadeModalLauncher } from "@/components/ArcadeModalLauncher";
+import { ProjectCard } from "@/components/ProjectCard";
 import Hobbies from "@/components/Hobbies";
 import { fireConfetti } from "@/lib/confetti";
 import { useLanguage } from "@/components/LanguageProvider";
 
-const ArcadeMiniGame = dynamic(
-  () => import("@/components/ArcadeMiniGame").then((m) => m.ArcadeMiniGame),
+const FEATURED_BASE_PROJECTS = [
   {
-    ssr: false,
-    loading: () => (
-      <div className="w-full max-w-6xl mx-auto h-[360px] rounded-2xl bg-black/60 border-2 border-cyan-400/30 flex items-center justify-center my-8 font-mono-label text-xs text-muted-foreground">
-        <span className="animate-pulse">Loading Arcade Console...</span>
-      </div>
-    ),
-  }
-);
+    title: "Career Finder Helper AI",
+    category: "FULL-STACK WEB & IA",
+    description:
+      "OS Desktop Local-First d'ingestion de données et matching d'emploi. Pipeline ETL temps réel sur 11 plateformes, scoring ATS vectoriel, tailoring documentaire et simulateur d'entretien STAR avec chiffrement local AES-256 (BYOK).",
+    size: "large" as const,
+    image: "/projects/career-finder-helper/cover.png",
+    video: "/projects/career-finder-helper/demo_30s.webm",
+    gallery: [
+      "/projects/career-finder-helper/kanban.png",
+      "/projects/career-finder-helper/explorer.png",
+      "/projects/career-finder-helper/modal.png",
+    ],
+    stacks: ["Python", "FastAPI", "React 19", "TypeScript", "SQLite (Local-First)", "Chrome Extension", "BYOK AI"],
+    link: "https://rcruento.lemonsqueezy.com",
+    private: true,
+  },
+  {
+    title: "KuCoinBot v10",
+    category: "HFT / ALGO TRADING",
+    description:
+      "Moteur de scalping haute fréquence sur cryptomonnaies conçu en Go. Moteur de scoring d'orderbook temps réel sur 4 niveaux, dimensionnement de position fractionnaire de Kelly et gestion d'ordres via WebSockets sub-milliseconde.",
+    size: "medium" as const,
+    stacks: ["Go", "React", "WebSocket", "Kelly Sizing"],
+    private: true,
+  },
+  {
+    title: "MBTI Explorer",
+    category: "FULL-STACK WEB",
+    description:
+      "Plateforme interactive de découverte de destinations selon les profils de personnalité Myers-Briggs. Visualisation de données, filtrage instantané et architecture REST performante.",
+    size: "medium" as const,
+    image: "https://mmj.azureedge.net/media/90903e37-919a-48a5-a93c-e39fe08b4386.webp",
+    stacks: ["ReactJS", "Node.js", "Express", "MySQL", "REST API"],
+  },
+];
 
 export function HomeView() {
   const { t, locale } = useLanguage();
@@ -64,8 +90,8 @@ export function HomeView() {
 
   return (
     <div className="flex flex-col items-center w-full gap-16 pb-20 overflow-x-hidden pt-12">
-      <CustomCursor />
       <GameHUDOverlay />
+      <ArcadeModalLauncher />
 
       {/* ── 1. HERO SECTION & PLAYER CARD ─────────────────────── */}
       <section className="w-full max-w-6xl mx-auto px-4 pt-8 sm:pt-12 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12">
@@ -107,14 +133,14 @@ export function HomeView() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto pt-2">
-            <Link href={`/${locale}/projects`} className="w-full sm:w-auto">
+            <Link href={`/${locale}/contact`} className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto hud-btn-primary px-6 py-4 rounded-2xl text-xs font-mono-label font-black tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto hud-btn-primary px-6 py-4 rounded-2xl text-xs font-mono-label font-black tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-rose-500/40"
               >
-                <Play size={16} className="fill-white" />
-                {t.hero.exploreProjects}
+                <Zap size={16} className="text-amber-300" />
+                {locale === "fr" ? "ME CONTACTER" : "GET IN TOUCH"}
               </motion.button>
             </Link>
 
@@ -129,7 +155,7 @@ export function HomeView() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto hud-btn-cyan px-6 py-4 rounded-2xl text-xs font-mono-label font-black tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto hud-btn-cyan px-6 py-4 rounded-2xl text-xs font-mono-label font-black tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-500/40"
               >
                 <Download size={16} />
                 {t.hero.downloadCv}
@@ -164,37 +190,38 @@ export function HomeView() {
           </div>
         </div>
 
-        {/* Right Clean Player Gaming Card */}
-        <div className="w-full max-w-sm hud-card p-6 flex flex-col items-center gap-5 text-center bg-black/90 border-2 border-cyan-400 shadow-2xl">
-          <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-rose-500 via-yellow-400 to-cyan-400 shadow-2xl shadow-rose-500/50">
+        {/* Right Clean Player Gaming Card - Enlarged & Polished */}
+        <div className="w-full max-w-md hud-card p-7 sm:p-8 flex flex-col items-center gap-6 text-center bg-black/90 border-2 border-cyan-400 shadow-2xl">
+          <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full p-1.5 bg-gradient-to-tr from-rose-500 via-yellow-400 to-cyan-400 shadow-2xl shadow-rose-500/50">
             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-black">
-              <Image src="/RK.jpg" alt="Rayan Koussa" fill sizes="144px" className="object-cover" priority />
+              <Image src="/RK.jpg" alt="Rayan Koussa" fill sizes="(max-width: 768px) 176px, 192px" className="object-cover" priority />
             </div>
           </div>
 
-          <div className="flex flex-col gap-1">
-            <p className="font-display font-black text-xl text-white">
+          <div className="flex flex-col gap-1.5">
+            <p className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
               {t.hero.fullNameFirst} {t.hero.fullNameLast}
             </p>
-            <span className="font-mono-label text-xs text-cyan-400 font-bold uppercase">
+            <span className="font-mono-label text-xs sm:text-sm text-cyan-400 font-extrabold uppercase tracking-wider">
               {t.hero.playerCard.playerTitle}
             </span>
           </div>
 
-          <div className="w-full grid grid-cols-2 gap-2 pt-2 border-t border-cyan-400/30 font-mono-label text-[11px]">
-            <div className="p-2 rounded-lg bg-black/60 border border-rose-500/40 text-left">
-              <span className="text-muted-foreground block text-[9px]">
+          <div className="w-full grid grid-cols-2 gap-3 pt-3 border-t border-cyan-400/30 font-mono-label">
+            <div className="p-3 rounded-xl bg-black/60 border border-rose-500/40 text-left flex flex-col justify-center">
+              <span className="text-muted-foreground block text-[10px] font-bold uppercase">
                 {t.hero.playerCard.degreeLabel}
               </span>
-              <span className="text-white font-bold">
+              <span className="text-white font-extrabold text-xs sm:text-sm">
                 {t.hero.playerCard.degreeValue}
               </span>
             </div>
-            <div className="p-2 rounded-lg bg-black/60 border border-emerald-400/40 text-left">
-              <span className="text-muted-foreground block text-[9px]">
+            <div className="p-3 rounded-xl bg-black/60 border border-emerald-400/40 text-left flex flex-col justify-center">
+              <span className="text-muted-foreground block text-[10px] font-bold uppercase">
                 {t.hero.playerCard.statusLabel}
               </span>
-              <span className="text-emerald-400 font-bold">
+              <span className="text-emerald-400 font-extrabold text-xs sm:text-sm flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 {t.hero.playerCard.statusValue}
               </span>
             </div>
@@ -202,79 +229,37 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* ── 2. DEDICATED ARCADE MINI-GAME SECTION ───────────────── */}
-      <section className="w-full max-w-6xl mx-auto px-4">
-        <div className="text-center flex flex-col items-center gap-2 mb-4">
-          <span className="hud-badge text-cyan-400 border-cyan-400 flex items-center gap-1.5">
-            <Gamepad2 size={16} className="text-rose-500" />
-            {t.arcade.badge}
-          </span>
-          <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
-            {t.arcade.title}
-          </h2>
-        </div>
-
-        <ArcadeMiniGame />
-      </section>
-
-      {/* ── 3. STATS & METRICS ──────────────────────────────────── */}
-      <section className="w-full max-w-5xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {t.stats.map((stat, i) => {
-            const IconComp = statIcons[i] || Trophy;
-            return (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="hud-card p-6 flex items-center gap-4"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500 flex items-center justify-center shrink-0">
-                  <IconComp size={24} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-display font-black text-2xl sm:text-3xl text-white">
-                    {stat.value}
-                  </span>
-                  <span className="font-mono-label text-xs text-cyan-400 font-bold uppercase">
-                    {stat.label}
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ── 4. SKILL ARSENAL ────────────────────────────────────── */}
-      <section id="skills" className="w-full max-w-5xl mx-auto px-4 flex flex-col gap-8 scroll-mt-24">
-        <div className="text-center flex flex-col items-center gap-2">
-          <span className="hud-badge text-cyan-400 border-cyan-400">
-            {t.skills.badge}
-          </span>
-          <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white">
-            {t.skills.title}
-          </h2>
-        </div>
-
-        <TechStackSection />
-      </section>
-
-      {/* ── 5. FORMATION & EXPÉRIENCE PROFESSIONNELLE ──────────── */}
-      <section id="quests" className="w-full max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 scroll-mt-24">
-        {/* Education Timeline */}
-        <div className="lg:col-span-6 flex flex-col gap-6">
-          <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-3">
-            <Trophy size={20} className="text-amber-400" />
-            <h2 className="font-display font-black text-xl text-white">
-              {t.quests.educationTitle}
+      {/* ── 2. PROJETS PHARES / FEATURED PROJECTS ────────────────── */}
+      <section className="w-full max-w-6xl mx-auto px-4 flex flex-col gap-8 scroll-mt-24">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-cyan-400/40 pb-4">
+          <div className="flex flex-col text-center sm:text-left gap-1">
+            <span className="hud-badge text-cyan-400 border-cyan-400 inline-block w-fit mx-auto sm:mx-0">
+              {t.nav.stage2} — HIGHLIGHTS
+            </span>
+            <h2 className="font-display font-black text-2xl sm:text-4xl text-white">
+              {locale === "fr" ? "Projets Phares & Réalisations" : "Featured Engineering Projects"}
             </h2>
           </div>
-          <AcademicTimeline />
+          <Link
+            href={`/${locale}/projects`}
+            className="hud-btn-cyan px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 hover:scale-105 transition-transform"
+          >
+            <span>{locale === "fr" ? "Explorer tous les projets" : "View all projects"}</span>
+            <Play size={14} className="fill-current" />
+          </Link>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {FEATURED_BASE_PROJECTS.map((proj) => (
+            <div key={proj.title} className="h-full">
+              <ProjectCard project={proj} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 3. FORMATION & EXPÉRIENCE PROFESSIONNELLE ──────────── */}
+      <section id="quests" className="w-full max-w-5xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 scroll-mt-24">
         {/* Experience Quests */}
         <div className="lg:col-span-6 flex flex-col gap-6">
           <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-3">
@@ -334,6 +319,62 @@ export function HomeView() {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        {/* Education Timeline */}
+        <div className="lg:col-span-6 flex flex-col gap-6">
+          <div className="flex items-center gap-2 border-b border-cyan-400/40 pb-3">
+            <Trophy size={20} className="text-amber-400" />
+            <h2 className="font-display font-black text-xl text-white">
+              {t.quests.educationTitle}
+            </h2>
+          </div>
+          <AcademicTimeline />
+        </div>
+      </section>
+
+      {/* ── 4. ARSENAL & COMPÉTENCES TECHNIQUES ─────────────────── */}
+      <section id="skills" className="w-full max-w-5xl mx-auto px-4 flex flex-col gap-8 scroll-mt-24">
+        <div className="text-center flex flex-col items-center gap-2">
+          <span className="hud-badge text-cyan-400 border-cyan-400">
+            {t.skills.badge}
+          </span>
+          <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white">
+            {t.skills.title}
+          </h2>
+        </div>
+
+        <TechStackSection />
+      </section>
+
+      {/* ── 5. STATS & METRICS ──────────────────────────────────── */}
+      <section className="w-full max-w-5xl mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {t.stats.map((stat, i) => {
+            const IconComp = statIcons[i] || Trophy;
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="hud-card p-6 flex items-center gap-4"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500 flex items-center justify-center shrink-0">
+                  <IconComp size={24} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-display font-black text-2xl sm:text-3xl text-white">
+                    {stat.value}
+                  </span>
+                  <span className="font-mono-label text-xs text-cyan-400 font-bold uppercase">
+                    {stat.label}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
